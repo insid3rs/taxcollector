@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DPP Application</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="error_title">Error !</string>
+    <string name="error_msg">There is an error!</string>
+    <string name="no_items">No User Search Found !</string>
+    <string name="title_profile_activity">Profile WP</string>
+    <string name="DL_Nama_Kelurahan">Nama Kelurahan</string>
+    <string name="title_activity_data_pbb">DataPBB</string>
+    <string name="title_activity_data_hotel">DataHotel</string>
+    <string name="title_activity_data_restoran">DataRestoran</string>
+    <string name="title_activity_data_parkir">DataParkir</string>
+    <string name="title_activity_data_hiburan">DataHiburan</string>
+
+</resources>

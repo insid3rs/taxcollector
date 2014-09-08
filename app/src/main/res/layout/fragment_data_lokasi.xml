@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/DL_Nama_Kelurahan"
+        android:id="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peta Lokasi"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:gravity="center"
+        android:background="#ff87c1ec"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:height="150dp" />
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/space" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alamat"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/space"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jalan"
+        android:id="@+id/textView4"
+        android:layout_toEndOf="@+id/space"
+        android:layout_below="@+id/textView3"
+        android:layout_toRightOf="@+id/space"
+        android:textSize="18dp"
+        android:layout_alignRight="@+id/textViewName"
+        android:layout_alignEnd="@+id/textViewName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nomor"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:textSize="18dp"
+        android:layout_alignRight="@+id/textView4"
+        android:layout_alignEnd="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rt"
+        android:id="@+id/textView6"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rw"
+        android:id="@+id/textView9"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kota"
+        android:id="@+id/textView10"
+        android:layout_alignLeft="@+id/textView9"
+        android:layout_alignStart="@+id/textView9"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignRight="@+id/textView9"
+        android:layout_alignEnd="@+id/textView9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kecamatan"
+        android:id="@+id/textView11"
+        android:layout_toEndOf="@+id/textView6"
+        android:layout_alignLeft="@+id/textView10"
+        android:layout_alignStart="@+id/textView10"
+        android:textSize="18dp"
+        android:layout_toStartOf="@+id/textView17"
+        android:layout_below="@+id/textView10"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kelurahan"
+        android:id="@+id/textView12"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11"
+        android:textSize="18dp"
+        android:layout_toStartOf="@+id/textView17"
+        android:layout_below="@+id/textView11"
+        android:layout_alignRight="@+id/textView11"
+        android:layout_alignEnd="@+id/textView11" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kode Pos"
+        android:id="@+id/textView13"
+        android:layout_alignLeft="@+id/textView12"
+        android:layout_alignStart="@+id/textView12"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignRight="@+id/textView12"
+        android:layout_alignEnd="@+id/textView12" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Luas Bumi"
+        android:id="@+id/textView14"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="96dp"
+        android:textSize="18dp"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_above="@+id/textView5"
+        android:layout_toRightOf="@+id/textViewName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jenis Tanah"
+        android:id="@+id/textView15"
+        android:textSize="18dp"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_below="@+id/textView14"
+        android:layout_above="@+id/textView16"
+        android:layout_toRightOf="@+id/textViewName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumlah Bangunan"
+        android:id="@+id/textView16"
+        android:textSize="18dp"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_above="@+id/textView17"
+        android:layout_toRightOf="@+id/textViewName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ZNT"
+        android:id="@+id/textView17"
+        android:textSize="18dp"
+        android:layout_toEndOf="@+id/textViewName"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_above="@+id/textView10"
+        android:layout_toRightOf="@+id/textViewName" />
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/space2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profil Blok Pendataan"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/space2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumlah objek pajak PBB"
+        android:id="@+id/textViewName"
+        android:layout_below="@+id/textView7"
+        android:layout_toRightOf="@+id/space2"
+        android:layout_toEndOf="@+id/space2"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanah Kosong"
+        android:id="@+id/textViewNPWP"
+        android:layout_below="@+id/textViewName"
+        android:layout_toRightOf="@+id/space2"
+        android:layout_toEndOf="@+id/space2"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kavling siap Bangun"
+        android:id="@+id/textViewPekerjaan"
+        android:layout_below="@+id/textViewNPWP"
+        android:layout_alignLeft="@+id/textViewNPWP"
+        android:layout_alignStart="@+id/textViewNPWP"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanah + bangunan"
+        android:id="@+id/textViewStatus"
+        android:layout_below="@+id/textViewPekerjaan"
+        android:layout_toRightOf="@+id/space2"
+        android:layout_toEndOf="@+id/space2"
+        android:textSize="18dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fasilitas umum"
+        android:id="@+id/textView23"
+        android:layout_below="@+id/textViewStatus"
+        android:layout_toRightOf="@+id/space2"
+        android:layout_toEndOf="@+id/space2"
+        android:textSize="18dp" />
+</RelativeLayout>
