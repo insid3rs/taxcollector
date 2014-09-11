@@ -15,6 +15,11 @@ public class SubjekPajakFragment extends Fragment {
 
 		View rootView = inflater.inflate(R.layout.fragment_subjek_pajak, container, false);
 
+        //Bundle element = this.getArguments();
+        //System.out.println("Bundle " + element.getString("title"));
+
+
+
 		return rootView;
 	}
 }

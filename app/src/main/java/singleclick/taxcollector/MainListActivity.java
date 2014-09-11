@@ -1,5 +1,6 @@
 package singleclick.taxcollector;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -8,14 +9,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,25 +43,45 @@ public class MainListActivity extends ListActivity {
     public static final String TAG = MainListActivity.class.getSimpleName();
     protected ProgressBar mProgressBar;
     protected JSONObject mWPSearchData;
+    protected EditText searchTextEdit;
+    protected Spinner searchSpinner;
     public static final int NUMBER_OF_WP = 20;
 
     private final String KEY_NOP = "nop";
     private final String KEY_NAME = "name";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBarMainListView);
+        searchTextEdit = (EditText)findViewById(R.id.WPSearchText);
+        searchSpinner = (Spinner)findViewById(R.id.WPSearchSpinner);
 
-        if(isNetworkAvailable()){
-            mProgressBar.setVisibility(View.VISIBLE);
-            GetWPTask GetWPTask = new GetWPTask();
-            GetWPTask.execute();
-        }else{
-            Toast.makeText(this, "Network is not Available", Toast.LENGTH_LONG).show();
-        }
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBarMainListView);
+        mProgressBar.setVisibility(View.INVISIBLE);
+
+        searchTextEdit.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+
+                if(isNetworkAvailable()){
+                    mProgressBar.setVisibility(View.VISIBLE);
+
+                    GetWPTask GetWPTask = new GetWPTask();
+                    GetWPTask.execute();
+                }else{
+                    //Toast.makeText(this, "Network is not Available", Toast.LENGTH_LONG).show();
+                    System.out.println("No network");
+                }
+            }
+        });
+
+
+
+
     }
 
     private class GetWPTask extends AsyncTask<Object, Void, JSONObject> {
@@ -68,7 +93,7 @@ public class MainListActivity extends ListActivity {
             try {
                 //URL wpSearchUrl = new URL("http://blog.teamtreehouse.com/api/get_recent_summary/?count=" + NUMBER_OF_WP);
                 URL wpSearchUrl = new URL("http://10.0.2.2/DPP/objekpajak.json");
-
+                //URL wpSearchUrl = new URL("http://192.168.1.20/DPP/objekpajak.json");
 
                 HttpURLConnection connection = (HttpURLConnection) wpSearchUrl.openConnection();
                 connection.connect();
@@ -120,6 +145,10 @@ public class MainListActivity extends ListActivity {
             try {
                 JSONArray jsonPost = mWPSearchData.getJSONArray("nop");
                 ArrayList<HashMap<String, String>> NopObject = new ArrayList<HashMap<String, String>>();
+
+                //System.out.println(searchSpinner.getSelectedItem().toString());
+                //System.out.println(searchTextEdit.getText().toString());
+
                 for(int i = 0;i<jsonPost.length();i++){
                     JSONObject post = jsonPost.getJSONObject(i);
                     String nop = post.getString(KEY_NOP);
@@ -131,12 +160,25 @@ public class MainListActivity extends ListActivity {
                     nopItem.put(KEY_NOP, nop);
                     nopItem.put(KEY_NAME, nopName);
 
-                    NopObject.add(nopItem);
+
+                    if (searchSpinner.getSelectedItem().toString().equals("NOP")){
+
+                        if(nop.toLowerCase().contains(searchTextEdit.getText().toString().toLowerCase())){
+                            NopObject.add(nopItem);
+                        }
+                    }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")){
+
+                        if(nopName.toLowerCase().contains(searchTextEdit.getText().toString().toLowerCase())){
+                            NopObject.add(nopItem);
+                        }
+                    }
+
                 }
 
                 String[] keys = {KEY_NOP, KEY_NAME};
-                int[] ids = {android.R.id.text1, android.R.id.text2};
-                SimpleAdapter adapter = new SimpleAdapter(this, NopObject, android.R.layout.simple_list_item_2, keys, ids);
+                int[] ids = {R.id.text1, R.id.text2};
+                //SimpleAdapter adapter = new SimpleAdapter(this, NopObject, android.R.layout.simple_list_item_2, keys, ids);
+                SimpleAdapter adapter = new SimpleAdapter(this, NopObject, R.layout.search_item_layout, keys, ids);
 
                 setListAdapter(adapter);
             } catch (JSONException e) {
@@ -176,6 +218,8 @@ public class MainListActivity extends ListActivity {
         try {
             JSONArray jsonPosts = mWPSearchData.getJSONArray("nop");
             JSONObject jsonPost = jsonPosts.getJSONObject(position);
+            System.out.println("Position "+position);
+
             //String blogUrl = jsonPost.getString("name");
 
 
@@ -201,7 +245,7 @@ public class MainListActivity extends ListActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_add) {
             return true;
         }
         return super.onOptionsItemSelected(item);

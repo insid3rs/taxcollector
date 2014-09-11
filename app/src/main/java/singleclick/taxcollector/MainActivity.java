@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -25,23 +28,27 @@ public class MainActivity extends FragmentActivity implements
     private String[] tabs = { "Data Lokasi", "Subjek Pajak", "Objek Pajak" };
 
     //protected String mUrl;
+    protected Intent intent;
 
-    public String NIK ="";
+    public String NIK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("HELLLP");
+        Bundle element = new Bundle();
+
 
         Intent intent = getIntent();
         try {
             JSONObject jsonObj = new JSONObject(intent.getStringExtra("nopJSON"));
 
             String NIK = jsonObj.getString("nop");
-            System.out.println(jsonObj.toString());
             System.out.println(NIK);
+            System.out.println(jsonObj.toString());
+
+            element.putString("NIK", NIK);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -67,6 +74,9 @@ public class MainActivity extends FragmentActivity implements
             actionBar.addTab(actionBar.newTab().setText(tab_name)
                     .setTabListener(this));
         }
+
+
+        mAdapter.getItem(0).setArguments(element);
 
 
         /**
@@ -138,7 +148,7 @@ public class MainActivity extends FragmentActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.data_pbb, menu);
+        getMenuInflater().inflate(R.menu.main_list, menu);
         return true;
     }
 
@@ -148,9 +158,12 @@ public class MainActivity extends FragmentActivity implements
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+
+        if (id == R.id.action_cari) {
+            Intent intent = new Intent(this, MainListActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

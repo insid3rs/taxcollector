@@ -8,15 +8,16 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainListActivity">
 
-
-    <ListView
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@android:id/list"
+        android:id="@+id/WPSearchSpinner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:headerDividersEnabled="true"
-        android:layout_below="@+id/WPSearchText" />
+        android:entries="@array/search_arrays"
+        android:prompt="@string/search_prompt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +28,19 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:hint="Search..."
-        android:textSize="24sp" />
+        android:textSize="18sp"
+        android:layout_below="@+id/WPSearchSpinner"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@android:id/list"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:headerDividersEnabled="true"
+        android:layout_below="@+id/WPSearchText" />
+
+
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
@@ -36,5 +49,7 @@
         android:id="@+id/progressBarMainListView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+
 
 </RelativeLayout>

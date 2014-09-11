@@ -6,10 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:debuggable="true"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo_dpp"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/ThemeDPP" >
         <activity
             android:name=".MainListActivity"
             android:label="@string/app_name" >

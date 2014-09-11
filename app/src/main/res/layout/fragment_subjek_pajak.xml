@@ -16,7 +16,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/textView16"
         android:layout_alignEnd="@+id/textView16"
-        android:textSize="22dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <Space
         android:layout_width="20dp"
@@ -75,7 +75,7 @@
         android:layout_below="@+id/space2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="20dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
         android:id="@+id/textView7"
         android:layout_below="@+id/textView6"
         android:layout_toEndOf="@+id/textView2"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView2" />
 
     <TextView
@@ -93,7 +93,7 @@
         android:text="Nomor"
         android:id="@+id/textView8"
         android:layout_below="@+id/textView7"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
 
@@ -104,7 +104,7 @@
         android:id="@+id/textView9"
         android:layout_toEndOf="@+id/textView2"
         android:layout_below="@+id/textView8"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView2" />
 
     <TextView
@@ -113,7 +113,7 @@
         android:text="Rw"
         android:id="@+id/textView10"
         android:layout_below="@+id/textView9"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView17"
         android:layout_toEndOf="@+id/textView17" />
 
@@ -123,7 +123,7 @@
         android:text="Kecamatan"
         android:id="@+id/textView11"
         android:layout_below="@+id/textView10"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView17"
         android:layout_toEndOf="@+id/textView17" />
 
@@ -133,7 +133,7 @@
         android:text="Kelurahan"
         android:id="@+id/textView12"
         android:layout_below="@+id/textView11"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView17"
         android:layout_toEndOf="@+id/textView17" />
 
@@ -143,7 +143,7 @@
         android:text="Kota"
         android:id="@+id/textView13"
         android:layout_below="@+id/textView12"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView17"
         android:layout_toEndOf="@+id/textView17" />
 
@@ -153,7 +153,7 @@
         android:text="Kode Pos"
         android:id="@+id/textView14"
         android:layout_below="@+id/textView13"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_toRightOf="@+id/textView17"
         android:layout_toEndOf="@+id/textView17" />
 
@@ -173,7 +173,7 @@
         android:layout_below="@+id/space3"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
         android:layout_below="@+id/textView15"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -193,7 +193,7 @@
         android:layout_below="@+id/textView16"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="22dp"
+        android:textSize="18dp"
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/textViewName"
         android:layout_alignStart="@+id/textViewName" />
@@ -217,7 +217,7 @@
         android:layout_alignStart="@+id/textViewNomor"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -226,7 +226,7 @@
         android:layout_below="@+id/textViewName"
         android:layout_alignLeft="@+id/textViewName"
         android:layout_alignStart="@+id/textViewName"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -237,7 +237,7 @@
         android:layout_below="@+id/textViewNPWP"
         android:layout_alignLeft="@+id/textViewNPWP"
         android:layout_alignStart="@+id/textViewNPWP"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -251,14 +251,14 @@
         android:layout_alignTop="@+id/textView5"
         android:layout_alignLeft="@+id/textViewPekerjaan"
         android:layout_alignStart="@+id/textViewPekerjaan"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewJalan"
         android:layout_toEndOf="@+id/textView11"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignTop="@+id/textView7"
         android:layout_marginLeft="27dp"
         android:layout_alignParentRight="true"
@@ -273,7 +273,7 @@
         android:layout_alignStart="@+id/textViewJalan"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="18dp" />
+        android:textSize="16dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -282,7 +282,7 @@
         android:layout_above="@+id/textView10"
         android:layout_alignLeft="@+id/textViewNomor"
         android:layout_alignStart="@+id/textViewNomor"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -292,7 +292,7 @@
         android:id="@+id/textViewKecamatan"
         android:layout_below="@+id/textView10"
         android:layout_toEndOf="@+id/textView11"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/textViewRT"
@@ -304,7 +304,7 @@
         android:id="@+id/textViewKelurahan"
         android:layout_alignTop="@+id/textView12"
         android:layout_toEndOf="@+id/textView11"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/textViewKecamatan"
@@ -317,7 +317,7 @@
         android:layout_below="@+id/textView12"
         android:layout_alignLeft="@+id/textViewKelurahan"
         android:layout_alignStart="@+id/textViewKelurahan"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -328,7 +328,7 @@
         android:layout_alignTop="@+id/textView14"
         android:layout_alignLeft="@+id/textViewKota"
         android:layout_alignStart="@+id/textViewKota"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -340,7 +340,7 @@
         android:layout_alignStart="@+id/textViewRT"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_below="@+id/textViewRT"
         android:layout_above="@+id/textViewKecamatan" />
 

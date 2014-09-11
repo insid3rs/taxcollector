@@ -14,5 +14,17 @@
     <string name="title_activity_data_restoran">DataRestoran</string>
     <string name="title_activity_data_parkir">DataParkir</string>
     <string name="title_activity_data_hiburan">DataHiburan</string>
+    <string name="action_tambahObjPajak">Tambah Objek Pajak</string>
+    <string name="action_cari">Cari</string>
+    <string name="action_ubahObjPajak">Ubah Objek Pajak</string>
+    <string name="action_hapusObjPajak">Hapus Objek Pajak</string>
+    <string name="search_prompt">Pilih Kategori</string>
 
+    <string-array name="search_arrays">
+        <item>NOP</item>
+        <item>NIK</item>
+        <item>Alamat</item>
+        <item>Nama Subjek Pajak</item>
+        <item>NPWPD</item>
+    </string-array>
 </resources>
