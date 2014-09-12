@@ -7,11 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -30,25 +29,38 @@ public class MainActivity extends FragmentActivity implements
     //protected String mUrl;
     protected Intent intent;
 
-    public String NIK;
+    private String WPNIK;
+    private String WPName;
+    private String WPJalan;
+    private String WPNoJalan;
+    private String WPRT;
+    private String WPRW;
+    private String WPKelurahan;
+    private String WPKota;
+    private String WPKodePos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Bundle element = new Bundle();
-
-
         Intent intent = getIntent();
         try {
             JSONObject jsonObj = new JSONObject(intent.getStringExtra("nopJSON"));
 
-            String NIK = jsonObj.getString("nop");
-            System.out.println(NIK);
+            WPNIK = jsonObj.getString("nop");
+            WPName = jsonObj.getString("name");
+            WPJalan = jsonObj.getString("jalan");
+            WPNoJalan = jsonObj.getString("blok");
+            WPRT = jsonObj.getString("rt");
+            WPRW = jsonObj.getString("rw");
+            WPKelurahan = jsonObj.getString("kelurahan");
+            WPKota = jsonObj.getString("kota");
+            WPKodePos = jsonObj.getString("kodepos");
+
+            System.out.println(WPNIK);
             System.out.println(jsonObj.toString());
 
-            element.putString("NIK", NIK);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -75,10 +87,6 @@ public class MainActivity extends FragmentActivity implements
                     .setTabListener(this));
         }
 
-
-        mAdapter.getItem(0).setArguments(element);
-
-
         /**
          * on swiping the viewpager make respective tab selected
          * */
@@ -91,32 +99,35 @@ public class MainActivity extends FragmentActivity implements
                 actionBar.setSelectedNavigationItem(position);
 
                 TextView textElementNIK = (TextView) findViewById(R.id.textViewNIK);
-                textElementNIK.setText("317401000401703000");
+                textElementNIK.setText(WPNIK);
 
                 TextView textElementName = (TextView) findViewById(R.id.textViewName);
-                textElementName.setText("MURSID");
+                textElementName.setText(WPName);
 
                 TextView textElementJalan = (TextView) findViewById(R.id.textViewJalan);
-                textElementJalan.setText("JL  KEMANGGISAN RAYA");
+                textElementJalan.setText(WPJalan);
 
                 TextView textElementBlok = (TextView) findViewById(R.id.textViewNomor);
-                textElementBlok.setText(".");
+                textElementBlok.setText(WPNoJalan);
 
                 TextView textElementRT = (TextView) findViewById(R.id.textViewRT);
-                textElementRT.setText("9");
+                textElementRT.setText(WPRT);
 
                 TextView textElementRW = (TextView) findViewById(R.id.textViewRW);
-                textElementRW.setText("4");
+                textElementRW.setText(WPRW);
 
                 TextView textElementKelurahan = (TextView) findViewById(R.id.textViewKelurahan);
-                textElementKelurahan.setText("PALMERAH");
+                textElementKelurahan.setText(WPKelurahan);
 
                 TextView textElementKota = (TextView) findViewById(R.id.textViewKota);
-                textElementKota.setText("JAKARTA BARAT");
+                textElementKota.setText(WPKota);
 
                 TextView textElementKodePos = (TextView) findViewById(R.id.textViewKodePos);
-                textElementKodePos.setText("");
+                textElementKodePos.setText(WPKodePos);
+
+
             }
+
 
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -126,6 +137,12 @@ public class MainActivity extends FragmentActivity implements
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
 
     }
 
@@ -148,7 +165,7 @@ public class MainActivity extends FragmentActivity implements
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_list, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
