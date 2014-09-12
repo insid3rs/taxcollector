@@ -1,5 +1,6 @@
 package singleclick.taxcollector;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +31,11 @@ public class DataHiburan extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.action_add) {
             return true;
+        }
+
+        if (id == R.id.action_cari) {
+            Intent intent = new Intent(this, MainListActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

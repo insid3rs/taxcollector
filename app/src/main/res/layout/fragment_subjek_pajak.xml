@@ -26,7 +26,7 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -195,65 +195,7 @@
         android:layout_alignParentStart="true"
         android:textSize="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewNIK"
-        android:layout_toEndOf="@+id/textView8"
-        android:layout_alignBottom="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="18dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/textViewName"
-        android:layout_alignStart="@+id/textViewName" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewName"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_alignLeft="@+id/textViewNomor"
-        android:layout_alignStart="@+id/textViewNomor"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewNPWP"
-        android:layout_below="@+id/textViewName"
-        android:layout_alignLeft="@+id/textViewName"
-        android:layout_alignStart="@+id/textViewName"
-        android:textSize="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewPekerjaan"
-        android:layout_below="@+id/textViewNPWP"
-        android:layout_alignLeft="@+id/textViewNPWP"
-        android:layout_alignStart="@+id/textViewNPWP"
-        android:textSize="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewStatus"
-        android:layout_toEndOf="@+id/textView7"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignLeft="@+id/textViewPekerjaan"
-        android:layout_alignStart="@+id/textViewPekerjaan"
-        android:textSize="16dp" />
-
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewJalan"
@@ -262,86 +204,185 @@
         android:layout_alignTop="@+id/textView7"
         android:layout_marginLeft="27dp"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewNomor"
+        android:id="@+id/textViewKodePos"
+        android:layout_alignTop="@+id/textView14"
+        android:textSize="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"
+        android:layout_alignLeft="@+id/textViewJalan" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignLeft="@+id/textViewKodePos"
+        android:layout_alignStart="@+id/textViewKodePos"
+        android:layout_alignRight="@+id/textViewKodePos"
+        android:layout_alignEnd="@+id/textViewKodePos"
+        android:textSize="16dp"
+        android:background="@drawable/border_edit_text"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:background="@drawable/border_edit_text"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/textView16"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignStart="@+id/editText2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:background="@drawable/border_edit_text"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16dp"
+        android:layout_alignLeft="@+id/textViewJalan" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText5"
+        android:layout_below="@+id/editText4"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16dp"
+        android:background="@drawable/border_edit_text"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText6"
+        android:background="@drawable/border_edit_text"
+        android:layout_below="@+id/editText5"
+        android:layout_alignLeft="@+id/editText5"
+        android:layout_alignStart="@+id/editText5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText7"
+        android:layout_below="@+id/editText6"
+        android:layout_alignLeft="@+id/editText6"
+        android:layout_alignStart="@+id/editText6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText8"
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText9"
         android:layout_below="@+id/textViewJalan"
         android:layout_alignLeft="@+id/textViewJalan"
         android:layout_alignStart="@+id/textViewJalan"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="16dp" />
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewRT"
-        android:layout_above="@+id/textView10"
-        android:layout_alignLeft="@+id/textViewNomor"
-        android:layout_alignStart="@+id/textViewNomor"
-        android:textSize="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewKecamatan"
-        android:layout_below="@+id/textView10"
-        android:layout_toEndOf="@+id/textView11"
-        android:textSize="16dp"
+        android:id="@+id/editText11"
+        android:layout_below="@+id/editText9"
+        android:layout_alignLeft="@+id/editText9"
+        android:layout_alignStart="@+id/editText9"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/textViewRT"
-        android:layout_alignStart="@+id/textViewRT" />
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewKelurahan"
-        android:layout_alignTop="@+id/textView12"
-        android:layout_toEndOf="@+id/textView11"
-        android:textSize="16dp"
+        android:id="@+id/editText12"
+        android:layout_below="@+id/editText11"
+        android:layout_alignLeft="@+id/editText11"
+        android:layout_alignStart="@+id/editText11"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/textViewKecamatan"
-        android:layout_alignStart="@+id/textViewKecamatan" />
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewKota"
-        android:layout_below="@+id/textView12"
-        android:layout_alignLeft="@+id/textViewKelurahan"
-        android:layout_alignStart="@+id/textViewKelurahan"
-        android:textSize="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewKodePos"
-        android:layout_alignTop="@+id/textView14"
-        android:layout_alignLeft="@+id/textViewKota"
-        android:layout_alignStart="@+id/textViewKota"
-        android:textSize="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewRW"
-        android:layout_alignLeft="@+id/textViewRT"
-        android:layout_alignStart="@+id/textViewRT"
+        android:id="@+id/editText13"
+        android:layout_below="@+id/editText12"
+        android:layout_alignLeft="@+id/editText12"
+        android:layout_alignStart="@+id/editText12"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:textSize="16dp"
-        android:layout_below="@+id/textViewRT"
-        android:layout_above="@+id/textViewKecamatan" />
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText14"
+        android:layout_below="@+id/editText13"
+        android:layout_alignLeft="@+id/textViewKodePos"
+        android:layout_alignStart="@+id/textViewKodePos"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText15"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_alignLeft="@+id/textViewKodePos"
+        android:layout_alignStart="@+id/textViewKodePos"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/border_edit_text"
+        android:textSize="16dp"/>
 
 </RelativeLayout>

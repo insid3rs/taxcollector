@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -98,31 +99,31 @@ public class MainActivity extends FragmentActivity implements
                 // make respected tab selected
                 actionBar.setSelectedNavigationItem(position);
 
-                TextView textElementNIK = (TextView) findViewById(R.id.textViewNIK);
+                EditText textElementNIK = (EditText) findViewById(R.id.editText4);
                 textElementNIK.setText(WPNIK);
 
-                TextView textElementName = (TextView) findViewById(R.id.textViewName);
+                EditText textElementName = (EditText) findViewById(R.id.editText5);
                 textElementName.setText(WPName);
 
-                TextView textElementJalan = (TextView) findViewById(R.id.textViewJalan);
+                EditText textElementJalan = (EditText) findViewById(R.id.textViewJalan);
                 textElementJalan.setText(WPJalan);
 
-                TextView textElementBlok = (TextView) findViewById(R.id.textViewNomor);
+                EditText textElementBlok = (EditText) findViewById(R.id.editText9);
                 textElementBlok.setText(WPNoJalan);
 
-                TextView textElementRT = (TextView) findViewById(R.id.textViewRT);
+                EditText textElementRT = (EditText) findViewById(R.id.editText11);
                 textElementRT.setText(WPRT);
 
-                TextView textElementRW = (TextView) findViewById(R.id.textViewRW);
+                EditText textElementRW = (EditText) findViewById(R.id.editText12);
                 textElementRW.setText(WPRW);
 
-                TextView textElementKelurahan = (TextView) findViewById(R.id.textViewKelurahan);
+                EditText textElementKelurahan = (EditText) findViewById(R.id.editText14);
                 textElementKelurahan.setText(WPKelurahan);
 
-                TextView textElementKota = (TextView) findViewById(R.id.textViewKota);
+                EditText textElementKota = (EditText) findViewById(R.id.editText15);
                 textElementKota.setText(WPKota);
 
-                TextView textElementKodePos = (TextView) findViewById(R.id.textViewKodePos);
+                EditText textElementKodePos = (EditText) findViewById(R.id.textViewKodePos);
                 textElementKodePos.setText(WPKodePos);
 
 
