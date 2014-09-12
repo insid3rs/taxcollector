@@ -35,7 +35,7 @@ tools:context="singleclick.taxcollector.DataPBB">
     android:text="Subjek Pajak"
     android:id="@+id/textView2"
     android:layout_alignParentStart="true"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:layout_below="@+id/space"
     android:layout_alignParentLeft="true" />
 
@@ -45,7 +45,7 @@ tools:context="singleclick.taxcollector.DataPBB">
     android:text="Status"
     android:id="@+id/textView3"
     android:layout_alignParentStart="true"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:layout_below="@+id/textView2"
     android:layout_alignParentLeft="true" />
 
@@ -55,7 +55,7 @@ tools:context="singleclick.taxcollector.DataPBB">
     android:text="Jenis Tanah"
     android:id="@+id/textView4"
     android:layout_alignParentStart="true"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:layout_below="@+id/textView3"
     android:layout_alignParentLeft="true" />
 
@@ -65,7 +65,7 @@ tools:context="singleclick.taxcollector.DataPBB">
     android:text="Luas Tanah"
     android:id="@+id/textView5"
     android:layout_alignParentStart="true"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:layout_below="@+id/textView4"
     android:layout_alignParentLeft="true" />
 
@@ -91,7 +91,7 @@ tools:context="singleclick.taxcollector.DataPBB">
     android:layout_height="wrap_content"
     android:text="Jumlah Bangunan"
     android:id="@+id/textView6"
-    android:textSize="16dp"
+    android:textSize="18dp"
     android:layout_alignTop="@+id/space2"
     android:layout_toRightOf="@+id/textView9"
     android:layout_toEndOf="@+id/textView9" />
@@ -111,7 +111,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView9"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp"/>
+        android:textSize="18dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -121,7 +121,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -131,7 +131,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -141,7 +141,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView10"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -151,7 +151,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView12"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -161,7 +161,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView13"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -171,7 +171,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView14"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -181,7 +181,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView15"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -191,7 +191,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView16"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -201,7 +201,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView17"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -211,7 +211,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView18"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -221,7 +221,7 @@ tools:context="singleclick.taxcollector.DataPBB">
         android:layout_below="@+id/textView19"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="16dp" />
+        android:textSize="18dp" />
 
 
 </RelativeLayout>
