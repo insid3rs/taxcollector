@@ -25,7 +25,7 @@ public class MainActivity extends FragmentActivity implements
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = { "Data Lokasi", "Subjek Pajak", "Objek Pajak" };
+    private String[] tabs = { "Data Lokasi", "Objek Usaha" };
 
     //protected String mUrl;
     protected Intent intent;
@@ -99,7 +99,7 @@ public class MainActivity extends FragmentActivity implements
                 // make respected tab selected
                 actionBar.setSelectedNavigationItem(position);
 
-                EditText textElementNIK = (EditText) findViewById(R.id.editText4);
+                /*EditText textElementNIK = (EditText) findViewById(R.id.editText4);
                 textElementNIK.setText(WPNIK);
 
                 EditText textElementName = (EditText) findViewById(R.id.editText5);
@@ -125,7 +125,7 @@ public class MainActivity extends FragmentActivity implements
 
                 EditText textElementKodePos = (EditText) findViewById(R.id.textViewKodePos);
                 textElementKodePos.setText(WPKodePos);
-
+*/
 
             }
 
