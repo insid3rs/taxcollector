@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -31,20 +33,30 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import singleclick.taxcollector.db.TaxCollectorDataSource;
+import singleclick.taxcollector.db.TaxCollectorHelper;
+
 
 public class MainListActivity extends ListActivity {
+
+    protected TaxCollectorDataSource mDataSource;
 
     public static final String TAG = MainListActivity.class.getSimpleName();
     protected ProgressBar mProgressBar;
     protected JSONObject mWPSearchData;
     protected EditText searchTextEdit;
     protected Spinner searchSpinner;
+    protected ArrayList<HashMap<String, String>> mWPSearchList;
+
+
     public static final int NUMBER_OF_WP = 20;
 
     private final String KEY_NOP = "nop";
@@ -56,13 +68,19 @@ public class MainListActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
 
+        mDataSource = new TaxCollectorDataSource(MainListActivity.this);
+        mWPSearchList = new ArrayList<HashMap<String, String>>();
+        mDataSource.open();
+
         searchTextEdit = (EditText)findViewById(R.id.WPSearchText);
         searchSpinner = (Spinner)findViewById(R.id.WPSearchSpinner);
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarMainListView);
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        searchTextEdit.addTextChangedListener(new TextWatcher(){
+
+        //INI UNTUK WEB SERVICE -> JSON
+        /*searchTextEdit.addTextChangedListener(new TextWatcher(){
             public void afterTextChanged(Editable s) {}
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){
@@ -78,12 +96,13 @@ public class MainListActivity extends ListActivity {
                 }
             }
         });
-
+        */
 
 
 
     }
 
+    /*
     private class GetWPTask extends AsyncTask<Object, Void, JSONObject> {
 
         @Override
@@ -92,7 +111,8 @@ public class MainListActivity extends ListActivity {
             JSONObject jsonResponse = null;
             try {
                 //URL wpSearchUrl = new URL("http://blog.teamtreehouse.com/api/get_recent_summary/?count=" + NUMBER_OF_WP);
-                URL wpSearchUrl = new URL("http://10.0.2.2/DPP/objekpajak.json");
+                //URL wpSearchUrl = new URL("http://10.0.2.2/DPP/objekpajak.json");
+                URL wpSearchUrl = new URL("http://192.168.56.1/DPP/objekpajak.json");
                 //URL wpSearchUrl = new URL("http://192.168.1.20/DPP/objekpajak.json");
 
                 HttpURLConnection connection = (HttpURLConnection) wpSearchUrl.openConnection();
@@ -145,9 +165,6 @@ public class MainListActivity extends ListActivity {
             try {
                 JSONArray jsonPost = mWPSearchData.getJSONArray("nop");
                 ArrayList<HashMap<String, String>> NopObject = new ArrayList<HashMap<String, String>>();
-
-                //System.out.println(searchSpinner.getSelectedItem().toString());
-                //System.out.println(searchTextEdit.getText().toString());
 
                 for(int i = 0;i<jsonPost.length();i++){
                     JSONObject post = jsonPost.getJSONObject(i);
@@ -210,21 +227,27 @@ public class MainListActivity extends ListActivity {
 
         return isAvailable;
     }
+    */
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        try {
+        //System.out.println(mWPSearchList.get(position).toString());
+        //System.out.println(mWPSearchList.get(position).get(KEY_NOP).toString());
+        //System.out.println(mWPSearchList.get(position).get(KEY_NAME).toString());
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("searchKey", mWPSearchList.get(position).get(KEY_NOP).toString());
+        startActivity(intent);
+
+        //INI UNTUK WEB SERVICE -> JSON
+        /*try {
             JSONArray jsonPosts = mWPSearchData.getJSONArray("nop");
             JSONObject jsonPost = jsonPosts.getJSONObject(position);
             System.out.println("Position "+position);
 
-            //String blogUrl = jsonPost.getString("name");
-
-
             Intent intent = new Intent(this, MainActivity.class);
-            //intent.setData(Uri.parse(blogUrl));
 
             intent.putExtra("nopJSON", jsonPost.toString());
 
@@ -232,7 +255,51 @@ public class MainListActivity extends ListActivity {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }*/
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mDataSource.open();
+
+        Cursor cursor = mDataSource.selectAllSubjekPajak();
+        updateList(cursor);
+    }
+
+    private void updateList(Cursor cursor) {
+        mWPSearchList.clear();
+
+        cursor.moveToFirst();
+        while( !cursor.isAfterLast() ) {
+            // do stuff
+            String namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
+            String subjekPajakID = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+
+            HashMap<String, String> nopItem = new HashMap<String, String>();
+            nopItem.put(KEY_NOP, subjekPajakID);
+            nopItem.put(KEY_NAME, namaDSP);
+
+            mWPSearchList.add(nopItem);
+
+            System.out.println(namaDSP);
+            System.out.println(subjekPajakID);
+
+            cursor.moveToNext();
         }
+
+        String[] keys = {KEY_NOP, KEY_NAME};
+        int[] ids = {R.id.text1, R.id.text2};
+        SimpleAdapter adapter = new SimpleAdapter(this, mWPSearchList, R.layout.search_item_layout, keys, ids);
+
+        setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDataSource.close();
     }
 
     @Override

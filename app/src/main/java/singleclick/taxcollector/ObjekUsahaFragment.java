@@ -27,7 +27,7 @@ public class ObjekUsahaFragment extends Fragment {
         buttonPBB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DataPBB.class);
+                Intent intent = new Intent(view.getContext(), DataReklame.class);
                 startActivity(intent);
             }
         });

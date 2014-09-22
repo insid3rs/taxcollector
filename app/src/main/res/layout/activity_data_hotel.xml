@@ -1,185 +1,623 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="singleclick.taxcollector.DataHotel">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:text="DATA HOTEL"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22dp"
-        android:textAlignment="center"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_margin="20dp"
+        android:orientation="vertical">
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="30px"
-        android:layout_alignParentStart="true"
-        android:id="@+id/space"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+            <TextView
+                android:text="DATA HOTEL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Subjek Pajak"
-        android:id="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:textSize="18dp"
-        android:layout_below="@+id/space"
-        android:layout_alignParentLeft="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nomor NPWPD"
-        android:id="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:textSize="18dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="NIK"
+                android:id="@+id/textView20"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NIK"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jenis Hotel"
-        android:id="@+id/textView4"
-        android:layout_alignParentStart="true"
-        android:textSize="18dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="NPWP"
+                android:id="@+id/textView22"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NPWP"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tingkat Hunian"
-        android:id="@+id/textView5"
-        android:layout_alignParentStart="true"
-        android:textSize="18dp"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:id="@+id/textView21"
+                android:textSize="16dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Nama"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="30px"
-        android:layout_alignParentStart="true"
-        android:id="@+id/space2"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView5" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView9"
-        android:layout_alignParentStart="true"
-        android:textSize="18dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/space2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informasi Kamar"
-        android:id="@+id/textView6"
-        android:textSize="18dp"
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="No. Telp"
+                android:id="@+id/textView35"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Tlp"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="200px"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/space3" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Handphone"
+                android:id="@+id/textView36"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Handphone"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informasi Lainnya"
-        android:id="@+id/textView7"
-        android:textSize="18dp"
-        android:layout_below="@+id/space3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="E-Mail"
+                android:id="@+id/textView37"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Email"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jumlah Kursi Restoran"
-        android:id="@+id/textView8"
-        android:textSize="18dp"
-        android:layout_below="@+id/textView7"
-        android:layout_toRightOf="@+id/space4"
-        android:layout_toEndOf="@+id/space4"
-        android:layout_marginLeft="35dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ALAMAT"
+                android:id="@+id/textView3"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jumlah Meja Restoran"
-        android:id="@+id/textView10"
-        android:textSize="18dp"
-        android:layout_below="@+id/textView8"
-        android:layout_alignRight="@+id/textView8"
-        android:layout_alignEnd="@+id/textView8" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Jalan"
+                android:id="@+id/textView4"
+                android:textSize="16dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Jalan"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px"
-        android:layout_below="@+id/textView10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/space4" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Nomor"
+                android:id="@+id/textView5"
+                android:textSize="16dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Nomor"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
-        android:checked="false"
-        android:textSize="18dp"
-        android:text="Menggunakan Sistem Komputerisasi"
-        android:layout_below="@+id/space4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Rt"
+                android:id="@+id/textView16"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Rt"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="50dp"
+                android:text="Rw"
+                android:id="@+id/textView19"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Rw"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Menggunakan Kasir"
-        android:id="@+id/checkBox2"
-        android:textSize="18dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/checkBox"
-        android:layout_alignParentLeft="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kota"
+                android:id="@+id/textView17"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Kota"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px"
-        android:layout_below="@+id/checkBox2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/space5" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kecamatan"
+                android:id="@+id/textView18"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Kecamatan"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jumlah Pegawai"
-        android:id="@+id/textView11"
-        android:textSize="18dp"
-        android:layout_below="@+id/space5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kelurahan"
+                android:id="@+id/textView12"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Kelurahan"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kode Pos"
+                android:id="@+id/textView13"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Kodepos"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATA OBJEK PAJAK"
+                android:id="@+id/textView27"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Klasifikasi Objek"
+                android:id="@+id/textView40"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_KlasifikasiObjek"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Nama Usaha"
+                android:id="@+id/textView41"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NamaUsaha"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Nomor Telepon"
+                android:id="@+id/textView42"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NoTlp"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:id="@+id/textView43"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_EmailUsaha"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:id="@+id/textView44"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_AlamatUsaha"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="NOP PBB"
+                android:id="@+id/textView45"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NOPPBBUsaha"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="No Izin Operasi"
+                android:id="@+id/textView46"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NoIzinUsaha"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Terhitung Mulai Tanggal"
+                android:id="@+id/textView47"
+                android:textSize="16dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_TanggalUsaha"
+                android:inputType="date"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DATA KARAKTERISTIK OBJEK PAJAK"
+                android:id="@+id/textView30"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PHOTO LOKASI"
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:background="#ff87c1ec"
+                android:height="150dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Jumlah Pagawai"
+                android:id="@+id/textView14"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_JumlahPegawai"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Tarif"
+                android:id="@+id/textView15"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Tarif"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FASILITAS"
+                android:id="@+id/textView32"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:id="@+id/textView51"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NamaFasilitas"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Jenis Fasilitas"
+                android:id="@+id/textView52"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_JenisFasilitas"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Luas"
+                android:id="@+id/textView53"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_LuasFasilitas"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Unit"
+                android:id="@+id/textView54"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_UnitFasilitas"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Jam Operasi"
+                android:id="@+id/textView55"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_JamOperasiFasilitas"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/space3" />
+
+    </LinearLayout>
+</ScrollView>

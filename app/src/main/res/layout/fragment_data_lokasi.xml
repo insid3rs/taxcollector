@@ -14,17 +14,102 @@
             android:layout_height="match_parent"
             android:paddingBottom="5dp">
             <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="NOP"
+                android:id="@+id/textView31"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NOP"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="NOP Bersama"
+                android:id="@+id/textView32"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NOPBersama"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="NOP Asal"
+                android:id="@+id/textView33"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_NOPAsal"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:text="NO SPPT Lama"
+                android:id="@+id/textView34"
+                android:textSize="16dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_SPPTLama"
+                android:textSize="16dp"
+                android:background="@drawable/border_edit_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SUBJEK PAJAK"
+                android:id="@+id/textView30"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="5dp">
+            <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Status"
                 android:id="@+id/textView24"
-                android:textSize="18dp" />
-            <EditText
+                android:textSize="16dp" />
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_Status"
-                android:textSize="18dp"
-                android:background="@drawable/border_edit_text"/>
+                android:id="@+id/WPStatusSpinner"
+                android:entries="@array/status_subjek_pajak"/>
         </LinearLayout>
 
         <LinearLayout
@@ -91,10 +176,63 @@
             android:text="Pekerjaan"
             android:id="@+id/textView26"
             android:textSize="16dp" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/WPPekerjaanSpinner"
+            android:entries="@array/pekerjaan_subjek_pajak"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="No. Telp"
+            android:id="@+id/textView35"
+            android:textSize="16dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Pekerjaan"
+            android:id="@+id/editText_Tlp"
+            android:textSize="16dp"
+            android:background="@drawable/border_edit_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Handphone"
+            android:id="@+id/textView36"
+            android:textSize="16dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Handphone"
+            android:textSize="16dp"
+            android:background="@drawable/border_edit_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="5dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="E-Mail"
+            android:id="@+id/textView37"
+            android:textSize="16dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_Email"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -118,13 +256,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="5dp">
+        android:paddingBottom="10dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Alamat"
+            android:text="ALAMAT"
             android:id="@+id/textView3"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -133,7 +271,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Jalan"
             android:id="@+id/textView4"
@@ -151,7 +289,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Nomor"
             android:id="@+id/textView5"
@@ -169,7 +307,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Rt"
             android:id="@+id/textView6"
@@ -200,7 +338,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Kota"
             android:id="@+id/textView10"
@@ -218,7 +356,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Kecamatan"
             android:id="@+id/textView11"
@@ -236,7 +374,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Kelurahan"
             android:id="@+id/textView12"
@@ -254,7 +392,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Kode Pos"
             android:id="@+id/textView13"
@@ -272,15 +410,15 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Luas Bumi"
+            android:text="Luas Tanah"
             android:id="@+id/textView14"
             android:textSize="16dp" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_LuasBumi"
+            android:id="@+id/editText_LuasTanah"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -290,17 +428,16 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Jenis Tanah"
             android:id="@+id/textView15"
             android:textSize="16dp" />
-        <EditText
+        <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_JenisTanah"
-            android:textSize="16dp"
-            android:background="@drawable/border_edit_text"/>
+            android:id="@+id/WPJenisTanahSpinner"
+            android:entries="@array/jenis_tanah"/>
     </LinearLayout>
 
     <LinearLayout
@@ -326,9 +463,9 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="ZNT"
+            android:text="Zona Nilai Tanah"
             android:id="@+id/textView17"
             android:textSize="16dp"/>
         <EditText
@@ -343,14 +480,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="5dp"
+        android:paddingBottom="10dp"
         android:paddingTop="15dp">
-        <TextView
-            android:layout_width="wrap_content"
+      <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Profil Blok Pendataan"
+            android:text="PROFIL BLOK PENDATAAN"
             android:id="@+id/textView7"
-            android:textSize="18dp"
+            android:textSize="20dp"
             android:textStyle="bold"/>
     </LinearLayout>
 
@@ -359,7 +496,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Jumlah objek pajak PBB"
             android:id="@+id/textViewName"
@@ -377,7 +514,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Tanah Kosong"
             android:id="@+id/textViewNPWP"
@@ -395,7 +532,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Kavling siap Bangun"
             android:id="@+id/textViewPekerjaan"
@@ -413,7 +550,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Tanah + bangunan"
             android:id="@+id/textViewStatus"
@@ -431,7 +568,7 @@
         android:layout_height="match_parent"
         android:paddingBottom="5dp">
         <TextView
-            android:layout_width="175dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Fasilitas umum"
             android:id="@+id/textView23"
@@ -444,5 +581,11 @@
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
 
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/space3" />
     </LinearLayout>
 </ScrollView>

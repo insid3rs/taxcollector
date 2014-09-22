@@ -27,4 +27,27 @@
         <item>Nama Subjek Pajak</item>
         <item>NPWPD</item>
     </string-array>
+    <string-array name="status_subjek_pajak">
+        <item>Pemilik</item>
+        <item>Penyewa</item>
+        <item>Pengelola</item>
+        <item>Pemakai</item>
+        <item>Sengketa</item>
+    </string-array>
+    <string-array name="pekerjaan_subjek_pajak">
+        <item>PNS</item>
+        <item>ABRI</item>
+        <item>Pensiunan</item>
+        <item>Badan</item>
+        <item>Lainnya</item>
+    </string-array>
+    <string-array name="jenis_tanah">
+        <item>Tanah + Bangunan</item>
+        <item>Kavling Siap Bangun</item>
+        <item>Tanah Kosong</item>
+        <item>Fasilitas Umum</item>
+    </string-array>
+
+    <string name="title_activity_activity_data_reklame">activity_data_reklame</string>
+
 </resources>

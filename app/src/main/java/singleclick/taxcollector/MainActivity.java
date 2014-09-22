@@ -2,8 +2,10 @@ package singleclick.taxcollector;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -17,9 +19,16 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
+import singleclick.taxcollector.db.TaxCollectorDataSource;
+import singleclick.taxcollector.db.TaxCollectorHelper;
+
 
 public class MainActivity extends FragmentActivity implements
         ActionBar.TabListener {
+
+    protected TaxCollectorDataSource mDataSource;
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
@@ -29,6 +38,7 @@ public class MainActivity extends FragmentActivity implements
 
     //protected String mUrl;
     protected Intent intent;
+    protected String searchKey;
 
     private String WPNIK;
     private String WPName;
@@ -45,8 +55,14 @@ public class MainActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mDataSource = new TaxCollectorDataSource(MainActivity.this);
+
         Intent intent = getIntent();
-        try {
+        searchKey = intent.getStringExtra("searchKey");
+
+
+        //INI UNTUK WEB SERVICE -> JSON
+        /*try {
             JSONObject jsonObj = new JSONObject(intent.getStringExtra("nopJSON"));
 
             WPNIK = jsonObj.getString("nop");
@@ -66,12 +82,7 @@ public class MainActivity extends FragmentActivity implements
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        //Uri blogUri = intent.getData();
-        //mUrl = blogUri.toString();
-
-        //WebView webView = (WebView) findViewById(R.id.webView1);
-        //webView.loadUrl(mUrl);
+        */
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -99,10 +110,10 @@ public class MainActivity extends FragmentActivity implements
                 // make respected tab selected
                 actionBar.setSelectedNavigationItem(position);
 
-                /*EditText textElementNIK = (EditText) findViewById(R.id.editText4);
+                /*EditText textElementNIK = (EditText) findViewById(R.id.editText_NIK);
                 textElementNIK.setText(WPNIK);
 
-                EditText textElementName = (EditText) findViewById(R.id.editText5);
+                /*EditText textElementName = (EditText) findViewById(R.id.editText5);
                 textElementName.setText(WPName);
 
                 EditText textElementJalan = (EditText) findViewById(R.id.textViewJalan);
@@ -148,6 +159,38 @@ public class MainActivity extends FragmentActivity implements
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mDataSource.open();
+
+    }
+
+    private void updateLayout(Cursor cursor) {
+        cursor.moveToFirst();
+        while( !cursor.isAfterLast() ) {
+            // do stuff
+            String namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
+            WPNIK = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+
+            //System.out.println(namaDSP);
+            //System.out.println(subjekPajakID);
+
+            ((EditText) findViewById(R.id.editText_NIK)).setText(WPNIK);
+
+            /*EditText textElementName = (EditText) findViewById(R.id.editText5);
+            textElementName.setText(namaDSP);*/
+
+            cursor.moveToNext();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDataSource.close();
+    }
+
+    @Override
     public void onTabReselected(Tab tab, FragmentTransaction ft) {
     }
 
@@ -161,6 +204,11 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+
+
+        Cursor cursor = mDataSource.selectSubjekPajak(searchKey);
+        updateLayout(cursor);
+
     }
 
     @Override
