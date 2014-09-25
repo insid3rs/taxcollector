@@ -31,7 +31,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 		switch (index) {
 		case 0:
             if(searchType.equals("NOP")){
-                DataRestoranFragment DataLokasiFragment = new DataRestoranFragment();
+                DataPBBFragment DataLokasiFragment = new DataPBBFragment();
                 DataLokasiFragment.setArguments(data);
                 return DataLokasiFragment;
             }else {
