@@ -9,8 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class TaxCollectorHelper extends SQLiteOpenHelper {
     // cd /Applications/Android\ Studio.app
-    // cd sdk/
-    // cd platform-tools/
+    // cd sdk/platform-tools/
     // ./adb -s 192.168.56.101:5555 shell
     // sqlite3 /data/data/singleclick.taxcollector/databases/WP.db
 
@@ -40,7 +39,7 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOP = "NOP";
     public static final String COLUMN_NAME = "NAME";
 
-    private static final String DB_NAME = "WP.db";
+    public static final String DB_NAME = "WP.db";
     private static final int DB_VERSION = 2;
     private static final String DB_CREATE =
             "CREATE TABLE " + TABLE_SUBJEK_PAJAK + " (" +

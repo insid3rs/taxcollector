@@ -6,8 +6,8 @@
         android:title="@string/action_cari"
         android:orderInCategory="100"
         app:showAsAction="never" />
-    <item android:id="@+id/action_add"
-        android:title="@string/action_tambahObjPajak"
+    <item android:id="@+id/action_update"
+        android:title="@string/action_ubahObjPajak"
         android:orderInCategory="100"
         app:showAsAction="never" />
 </menu>

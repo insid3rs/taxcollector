@@ -1,43 +1,23 @@
 package singleclick.taxcollector;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -59,7 +39,7 @@ public class MainListActivity extends ListActivity {
 
     public static final int NUMBER_OF_WP = 20;
 
-    private final String KEY_NOP = "nop";
+    private final String KEY_SEARCH = "searchKey";
     private final String KEY_NAME = "name";
 
 
@@ -78,6 +58,45 @@ public class MainListActivity extends ListActivity {
         mProgressBar = (ProgressBar) findViewById(R.id.progressBarMainListView);
         mProgressBar.setVisibility(View.INVISIBLE);
 
+        searchSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
+                    Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("NIK")){
+                    Cursor cursor = mDataSource.selectSubjekPajakNIK(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")){
+                    Cursor cursor = mDataSource.selectSubjekPajakNamaWP(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+        searchTextEdit.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){
+
+                if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
+                    Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("NIK")){
+                    Cursor cursor = mDataSource.selectSubjekPajakNIK(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")){
+                    Cursor cursor = mDataSource.selectSubjekPajakNamaWP(searchTextEdit.getText().toString());
+                    updateList(cursor);
+                }
+            }
+        });
 
         //INI UNTUK WEB SERVICE -> JSON
         /*searchTextEdit.addTextChangedListener(new TextWatcher(){
@@ -98,8 +117,111 @@ public class MainListActivity extends ListActivity {
         });
         */
 
+    }
 
 
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("searchKey", mWPSearchList.get(position).get(KEY_SEARCH).toString());
+        intent.putExtra("searchType", searchSpinner.getSelectedItem().toString());
+
+
+        startActivity(intent);
+
+        //INI UNTUK WEB SERVICE -> JSON
+        /*try {
+            JSONArray jsonPosts = mWPSearchData.getJSONArray("nop");
+            JSONObject jsonPost = jsonPosts.getJSONObject(position);
+            System.out.println("Position "+position);
+
+            Intent intent = new Intent(this, MainActivity.class);
+
+            intent.putExtra("nopJSON", jsonPost.toString());
+
+            startActivity(intent);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mDataSource.open();
+
+        Cursor cursor = mDataSource.selectAllSubjekPajak();
+        updateList(cursor);
+
+
+    }
+
+    private void updateList(Cursor cursor) {
+        mWPSearchList.clear();
+
+        cursor.moveToFirst();
+        while( !cursor.isAfterLast() ) {
+            // do stuff
+            String namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
+            String subjekPajakID = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+            String subjekPajakNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NOP));
+
+            HashMap<String, String> nopItem = new HashMap<String, String>();
+
+            if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
+                nopItem.put(KEY_SEARCH, subjekPajakNOP);
+            }else if(searchSpinner.getSelectedItem().toString().equals("NIK")) {
+                nopItem.put(KEY_SEARCH, subjekPajakID);
+            }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")) {
+                nopItem.put(KEY_SEARCH, subjekPajakID);
+            }
+            nopItem.put(KEY_NAME, namaDSP);
+
+            mWPSearchList.add(nopItem);
+
+            //System.out.println(namaDSP);
+            //System.out.println(subjekPajakID);
+
+            cursor.moveToNext();
+        }
+
+        String[] keys = {KEY_SEARCH, KEY_NAME};
+        int[] ids = {R.id.text1, R.id.text2};
+        SimpleAdapter adapter = new SimpleAdapter(this, mWPSearchList, R.layout.search_item_layout, keys, ids);
+
+        setListAdapter(adapter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mDataSource.close();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_tambahSubjekPajak) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahSubjekPajak");
+
+            startActivity(intent);
+
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /*
@@ -168,13 +290,13 @@ public class MainListActivity extends ListActivity {
 
                 for(int i = 0;i<jsonPost.length();i++){
                     JSONObject post = jsonPost.getJSONObject(i);
-                    String nop = post.getString(KEY_NOP);
+                    String nop = post.getString(KEY_SEARCH);
                     nop = Html.fromHtml(nop).toString();
                     String nopName = post.getString(KEY_NAME);
                     nopName = Html.fromHtml(nopName).toString();
 
                     HashMap<String, String> nopItem = new HashMap<String, String>();
-                    nopItem.put(KEY_NOP, nop);
+                    nopItem.put(KEY_SEARCH, nop);
                     nopItem.put(KEY_NAME, nopName);
 
 
@@ -192,7 +314,7 @@ public class MainListActivity extends ListActivity {
 
                 }
 
-                String[] keys = {KEY_NOP, KEY_NAME};
+                String[] keys = {KEY_SEARCH, KEY_NAME};
                 int[] ids = {R.id.text1, R.id.text2};
                 //SimpleAdapter adapter = new SimpleAdapter(this, NopObject, android.R.layout.simple_list_item_2, keys, ids);
                 SimpleAdapter adapter = new SimpleAdapter(this, NopObject, R.layout.search_item_layout, keys, ids);
@@ -228,94 +350,4 @@ public class MainListActivity extends ListActivity {
         return isAvailable;
     }
     */
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        //System.out.println(mWPSearchList.get(position).toString());
-        //System.out.println(mWPSearchList.get(position).get(KEY_NOP).toString());
-        //System.out.println(mWPSearchList.get(position).get(KEY_NAME).toString());
-
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("searchKey", mWPSearchList.get(position).get(KEY_NOP).toString());
-        startActivity(intent);
-
-        //INI UNTUK WEB SERVICE -> JSON
-        /*try {
-            JSONArray jsonPosts = mWPSearchData.getJSONArray("nop");
-            JSONObject jsonPost = jsonPosts.getJSONObject(position);
-            System.out.println("Position "+position);
-
-            Intent intent = new Intent(this, MainActivity.class);
-
-            intent.putExtra("nopJSON", jsonPost.toString());
-
-            startActivity(intent);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mDataSource.open();
-
-        Cursor cursor = mDataSource.selectAllSubjekPajak();
-        updateList(cursor);
-    }
-
-    private void updateList(Cursor cursor) {
-        mWPSearchList.clear();
-
-        cursor.moveToFirst();
-        while( !cursor.isAfterLast() ) {
-            // do stuff
-            String namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
-            String subjekPajakID = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
-
-            HashMap<String, String> nopItem = new HashMap<String, String>();
-            nopItem.put(KEY_NOP, subjekPajakID);
-            nopItem.put(KEY_NAME, namaDSP);
-
-            mWPSearchList.add(nopItem);
-
-            System.out.println(namaDSP);
-            System.out.println(subjekPajakID);
-
-            cursor.moveToNext();
-        }
-
-        String[] keys = {KEY_NOP, KEY_NAME};
-        int[] ids = {R.id.text1, R.id.text2};
-        SimpleAdapter adapter = new SimpleAdapter(this, mWPSearchList, R.layout.search_item_layout, keys, ids);
-
-        setListAdapter(adapter);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mDataSource.close();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_list, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_add) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }

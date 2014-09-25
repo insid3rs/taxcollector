@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.text.method.TextKeyListener;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import singleclick.taxcollector.db.TaxCollectorDataSource;
@@ -39,6 +42,8 @@ public class MainActivity extends FragmentActivity implements
     //protected String mUrl;
     protected Intent intent;
     protected String searchKey;
+    protected String searchType;
+
 
     private String WPNIK;
     private String WPName;
@@ -59,7 +64,7 @@ public class MainActivity extends FragmentActivity implements
 
         Intent intent = getIntent();
         searchKey = intent.getStringExtra("searchKey");
-
+        searchType = intent.getStringExtra("searchType");
 
         //INI UNTUK WEB SERVICE -> JSON
         /*try {
@@ -89,15 +94,28 @@ public class MainActivity extends FragmentActivity implements
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
+        //pass variable into Tabs
+        mAdapter.setSearchKey(searchKey);
+        mAdapter.setSearchType(searchType);
+
+        if(searchType.equals("NIK")){
+            tabs = new String[] { "Subjek Pajak", "Objek Pajak"};
+        }else{
+            tabs = new String[] { "Objek Pajak"};
+        }
+
         viewPager.setAdapter(mAdapter);
         //actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 
         // Adding Tabs
         for (String tab_name : tabs) {
             actionBar.addTab(actionBar.newTab().setText(tab_name)
                     .setTabListener(this));
         }
+
+
 
         /**
          * on swiping the viewpager make respective tab selected
@@ -109,35 +127,6 @@ public class MainActivity extends FragmentActivity implements
                 // on changing the page
                 // make respected tab selected
                 actionBar.setSelectedNavigationItem(position);
-
-                /*EditText textElementNIK = (EditText) findViewById(R.id.editText_NIK);
-                textElementNIK.setText(WPNIK);
-
-                /*EditText textElementName = (EditText) findViewById(R.id.editText5);
-                textElementName.setText(WPName);
-
-                EditText textElementJalan = (EditText) findViewById(R.id.textViewJalan);
-                textElementJalan.setText(WPJalan);
-
-                EditText textElementBlok = (EditText) findViewById(R.id.editText9);
-                textElementBlok.setText(WPNoJalan);
-
-                EditText textElementRT = (EditText) findViewById(R.id.editText11);
-                textElementRT.setText(WPRT);
-
-                EditText textElementRW = (EditText) findViewById(R.id.editText12);
-                textElementRW.setText(WPRW);
-
-                EditText textElementKelurahan = (EditText) findViewById(R.id.editText14);
-                textElementKelurahan.setText(WPKelurahan);
-
-                EditText textElementKota = (EditText) findViewById(R.id.editText15);
-                textElementKota.setText(WPKota);
-
-                EditText textElementKodePos = (EditText) findViewById(R.id.textViewKodePos);
-                textElementKodePos.setText(WPKodePos);
-*/
-
             }
 
 
@@ -151,6 +140,8 @@ public class MainActivity extends FragmentActivity implements
         });
     }
 
+
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -161,33 +152,14 @@ public class MainActivity extends FragmentActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        mDataSource.open();
 
-    }
 
-    private void updateLayout(Cursor cursor) {
-        cursor.moveToFirst();
-        while( !cursor.isAfterLast() ) {
-            // do stuff
-            String namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
-            WPNIK = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
-
-            //System.out.println(namaDSP);
-            //System.out.println(subjekPajakID);
-
-            ((EditText) findViewById(R.id.editText_NIK)).setText(WPNIK);
-
-            /*EditText textElementName = (EditText) findViewById(R.id.editText5);
-            textElementName.setText(namaDSP);*/
-
-            cursor.moveToNext();
-        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        mDataSource.close();
+        //mDataSource.close();
     }
 
     @Override
@@ -204,11 +176,6 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-
-        Cursor cursor = mDataSource.selectSubjekPajak(searchKey);
-        updateLayout(cursor);
-
     }
 
     @Override
@@ -228,8 +195,53 @@ public class MainActivity extends FragmentActivity implements
         if (id == R.id.action_cari) {
             Intent intent = new Intent(this, MainListActivity.class);
             startActivity(intent);
+        }else if (id == R.id.action_update) {
+            updateSubjekPajakDB();
         }
+
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateSubjekPajakDB() {
+
+        if(searchType.equals("NIK")){
+            findViewById(R.id.layout_UpdateSubjekPajakButton).setVisibility(View.VISIBLE);
+        }else{
+            findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.VISIBLE);
+        }
+
+
+        ((EditText) findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_Nama)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_BLOK_KAV_NO_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_EMAIL_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_HP_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_JALAN_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_KD_POS_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_KELURAHAN_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_KOTA_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_NOP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_RT_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_RW_WP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_NPWP)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DSP_TELP_WP)).setBackgroundResource(R.drawable.border_edit_text);
+
+
+        ((EditText) findViewById(R.id.editText_NIK)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_Nama)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_BLOK_KAV_NO_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_EMAIL_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_HP_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_JALAN_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_KD_POS_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_KELURAHAN_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_KOTA_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_NOP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_RT_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_RW_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_NPWP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_DSP_TELP_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
     }
 
 }

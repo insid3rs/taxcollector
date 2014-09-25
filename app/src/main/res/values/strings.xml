@@ -21,11 +21,12 @@
     <string name="search_prompt">Pilih Kategori</string>
 
     <string-array name="search_arrays">
-        <item>NOP</item>
         <item>NIK</item>
-        <item>Alamat</item>
-        <item>Nama Subjek Pajak</item>
+        <item>NOP</item>
         <item>NPWPD</item>
+        <item>Alamat Subjek Pajak</item>
+        <item>Nama Subjek Pajak</item>
+
     </string-array>
     <string-array name="status_subjek_pajak">
         <item>Pemilik</item>
@@ -49,5 +50,10 @@
     </string-array>
 
     <string name="title_activity_activity_data_reklame">activity_data_reklame</string>
+    <string name="button_updateSubjekPajak">Update Subjek Pajak</string>
+    <string name="action_tambahSubjekPajak">Tambah Subjek Pajak</string>
+    <string name="button_addSubjekPajak">Tambah Subjek Pajak</string>
+    <string name="button_addObjekPajak">Tambah Objek Pajak</string>
+    <string name="button_updateObjekPajak">Update Objek Pajak</string>
 
 </resources>

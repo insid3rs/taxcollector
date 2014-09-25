@@ -29,23 +29,23 @@
             android:label="@string/title_activity_data_pbb" >
         </activity>
         <activity
-            android:name=".DataHotel"
+            android:name=".DataHotelFragment"
             android:label="@string/title_activity_data_hotel" >
         </activity>
         <activity
-            android:name=".DataRestoran"
+            android:name=".DataRestoranFragment"
             android:label="@string/title_activity_data_restoran" >
         </activity>
         <activity
-            android:name=".DataParkir"
+            android:name=".DataParkirFragment"
             android:label="@string/title_activity_data_parkir" >
         </activity>
         <activity
-            android:name=".DataHiburan"
+            android:name=".DataHiburanFragment"
             android:label="@string/title_activity_data_hiburan" >
         </activity>
         <activity
-            android:name=".DataReklame"
+            android:name=".DataReklameFragment"
             android:label="@string/title_activity_activity_data_reklame" >
         </activity>
     </application>

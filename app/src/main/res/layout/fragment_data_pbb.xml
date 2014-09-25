@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp"
+            android:id="@+id/layout_AddObjekPajakButton">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_addObjekPajak"
+                android:id="@+id/button_AddObjekPajak"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="30dp"
+            android:id="@+id/layout_UpdateObjekPajakButton">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/button_updateObjekPajak"
+                android:id="@+id/button_UpdateObjekPajak"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +52,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_NOP"
+                android:id="@+id/editText_DSP_NOP"
                 android:textSize="16dp"
                 android:background="@drawable/border_edit_text"/>
         </LinearLayout>
@@ -143,7 +173,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Nama"
+            android:id="@+id/editText_DSP_Nama"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -161,7 +191,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_NPWP"
+            android:id="@+id/editText_DSP_NPWP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -196,7 +226,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Tlp"
+            android:id="@+id/editText_DSP_TELP_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -214,7 +244,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Handphone"
+            android:id="@+id/editText_DSP_HP_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -232,7 +262,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Email"
+            android:id="@+id/editText_DSP_EMAIL_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -279,7 +309,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Jalan"
+            android:id="@+id/editText_DSP_JALAN_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -297,7 +327,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Nomor"
+            android:id="@+id/editText_DSP_BLOK_KAV_NO_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -315,7 +345,7 @@
         <EditText
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Rt"
+            android:id="@+id/editText_DSP_RT_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
         <TextView
@@ -328,7 +358,7 @@
         <EditText
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Rw"
+            android:id="@+id/editText_DSP_RW_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -346,7 +376,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Kota"
+            android:id="@+id/editText_DSP_KOTA_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -382,7 +412,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Kelurahan"
+            android:id="@+id/editText_DSP_KELURAHAN_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
@@ -400,7 +430,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText_Kodepos"
+            android:id="@+id/editText_DSP_KD_POS_WP"
             android:textSize="16dp"
             android:background="@drawable/border_edit_text"/>
     </LinearLayout>
