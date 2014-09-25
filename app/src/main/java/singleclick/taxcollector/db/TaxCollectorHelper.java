@@ -266,6 +266,11 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
                 "HARGA_SEWA_OU TEXT " +
                 ")");
 
+        db.execSQL("insert into DAT_SUBJEK_PAJAK values('1212121','0','MURSIDIK','JL KEMANGGISAN RAYA','','9','4','PALMERAH','JAKARTA BARAT','','','','','-','5','317401100000000000')");
+
+        db.execSQL("insert into DAT_SUBJEK_PAJAK values('953092511430192','0',' H YUNUS ',' JL MUAMALAH ','45','3','4',' CIPEDAK ','JAKARTA SELATAN','','','','','-','5','317103000000000000')");
+
+
     }
 
     
