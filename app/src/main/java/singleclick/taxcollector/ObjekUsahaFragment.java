@@ -114,27 +114,27 @@ public class ObjekUsahaFragment extends Fragment {
         PBB.add("Tambah Data...");
 
         List<String> HIBURAN = new ArrayList<String>();
-        PBB.add("Tambah Data...");
+        HIBURAN.add("Tambah Data...");
 
         List<String> HOTEL = new ArrayList<String>();
-        PBB.add("Tambah Data...");
+        HOTEL.add("Tambah Data...");
 
         List<String> PARKIR = new ArrayList<String>();
-        PBB.add("Tambah Data...");
+        PARKIR.add("Tambah Data...");
 
         List<String> REKLAME = new ArrayList<String>();
-        PBB.add("Tambah Data...");
+        REKLAME.add("Tambah Data...");
 
         List<String> RESTORAN = new ArrayList<String>();
-        PBB.add("Tambah Data...");
+        RESTORAN.add("Tambah Data...");
 
 
         listDataChild.put(listDataHeader.get(0), PBB); // Header, Child data
         listDataChild.put(listDataHeader.get(1), HIBURAN);
         listDataChild.put(listDataHeader.get(2), HOTEL);
-        listDataChild.put(listDataHeader.get(2), PARKIR);
-        listDataChild.put(listDataHeader.get(2), REKLAME);
-        listDataChild.put(listDataHeader.get(2), RESTORAN);
+        listDataChild.put(listDataHeader.get(3), PARKIR);
+        listDataChild.put(listDataHeader.get(4), REKLAME);
+        listDataChild.put(listDataHeader.get(5), RESTORAN);
     }
 
 
