@@ -25,7 +25,11 @@
             android:label="@string/title_profile_activity" >
         </activity>
         <activity
-            android:name=".DataPBB"
+            android:name=".MainListActivity"
+            android:label="@string/title_activity_data_pbb" >
+        </activity>
+        <activity
+            android:name=".DataPBBFragment"
             android:label="@string/title_activity_data_pbb" >
         </activity>
         <activity
