@@ -43,7 +43,7 @@ public class MainActivity extends FragmentActivity implements
     protected Intent intent;
     protected String searchKey;
     protected String searchType;
-
+    protected String objekUsahaType;
 
     private String WPNIK;
     private String WPName;
@@ -65,6 +65,8 @@ public class MainActivity extends FragmentActivity implements
         Intent intent = getIntent();
         searchKey = intent.getStringExtra("searchKey");
         searchType = intent.getStringExtra("searchType");
+        objekUsahaType = intent.getStringExtra("objekUsahaType");
+
 
         //INI UNTUK WEB SERVICE -> JSON
         /*try {
@@ -97,11 +99,16 @@ public class MainActivity extends FragmentActivity implements
         //pass variable into Tabs
         mAdapter.setSearchKey(searchKey);
         mAdapter.setSearchType(searchType);
+        mAdapter.setObjekUsahaType(objekUsahaType);
 
         if(searchType.equals("NIK")){
             tabs = new String[] { "Subjek Pajak", "Objek Pajak"};
-        }else{
-            tabs = new String[] { "Objek Pajak"};
+        }else if(searchType.equals("NOP")){
+            tabs = new String[] { "Data PBB", "Objek Usaha"};
+        }else if(searchType.equals("NPWPD")){
+            tabs = new String[] { "Data PBB", "Objek Usaha ( "+objekUsahaType+" )"};
+        }else if(searchType.equals("tambahHotel")){
+            tabs = new String[] { "Objek Usaha ( Hotel )"};
         }
 
         viewPager.setAdapter(mAdapter);
@@ -182,6 +189,12 @@ public class MainActivity extends FragmentActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        if(searchType.equals("tambahHotel") || searchType.equals("tambahSubjekPajak")) {
+            MenuItem item = menu.findItem(R.id.action_update);
+            item.setVisible(false);
+        }
+
         return true;
     }
 
@@ -196,7 +209,13 @@ public class MainActivity extends FragmentActivity implements
             Intent intent = new Intent(this, MainListActivity.class);
             startActivity(intent);
         }else if (id == R.id.action_update) {
-            updateSubjekPajakDB();
+            if(searchType.equals("NIK")){
+                updateSubjekPajakDB();
+            }else if(searchType.equals("NOP")){
+                updateSubjekPajakDB();
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hotel")){
+                updateObjekUsahaHotelDB();
+            }
         }
 
 
@@ -242,6 +261,38 @@ public class MainActivity extends FragmentActivity implements
         ((EditText) findViewById(R.id.editText_DSP_RW_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
         ((EditText) findViewById(R.id.editText_DSP_NPWP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
         ((EditText) findViewById(R.id.editText_DSP_TELP_WP)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+    }
+
+    private void updateObjekUsahaHotelDB() {
+        findViewById(R.id.layout_UpdateSubjekPajakButton).setVisibility(View.VISIBLE);
+
+        ((EditText) findViewById(R.id.editText_OU_NIK)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_OU_NPWPD)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_NOPPBBUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_KlasifikasiObjek)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_NamaUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_NoTlp)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_EmailUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_AlamatUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_NOPPBBUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_NoIzinUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_TanggalUsaha)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_JumlahPegawai)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_Tarif)).setBackgroundResource(R.drawable.border_edit_text);
+
+        ((EditText) findViewById(R.id.editText_OU_NIK)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_OU_NPWPD)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_NOPPBBUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_KlasifikasiObjek)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_NamaUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_NoTlp)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_EmailUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_AlamatUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_NOPPBBUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_NoIzinUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_TanggalUsaha)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_JumlahPegawai)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
+        ((EditText) findViewById(R.id.editText_Tarif)).setKeyListener(new TextKeyListener(TextKeyListener.Capitalize.WORDS,true));
     }
 
 }

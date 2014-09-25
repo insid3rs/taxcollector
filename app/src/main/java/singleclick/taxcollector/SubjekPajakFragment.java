@@ -33,13 +33,8 @@ public class SubjekPajakFragment extends Fragment {
         searchKey = bundle.getString("searchKey");
         searchType = bundle.getString("searchType");
 
-        System.out.println(searchKey);
-        System.out.println(searchType);
-
-
         mDataSource = new TaxCollectorDataSource(getActivity());
         mDataSource.open();
-
     }
 
     @Override
@@ -51,7 +46,7 @@ public class SubjekPajakFragment extends Fragment {
         if(searchType.equals("NIK") || searchType.equals("Nama Subjek Pajak")) {
             cursorSubjekPajak = mDataSource.selectSubjekPajakNIK(searchKey);
             updateLayoutSubjekPajak(cursorSubjekPajak);
-            rootView.findViewById(R.id.layout_AddSubjekPajakButton).setVisibility(View.GONE);
+            normalMode();
         }else if(searchType.equals("tambahSubjekPajak")) {
             rootView.findViewById(R.id.layout_UpdateSubjekPajakButton).setVisibility(View.GONE);
         }
@@ -113,6 +108,9 @@ public class SubjekPajakFragment extends Fragment {
                 normalMode();
             }
         });
+
+
+
         return rootView;
     }
 

@@ -54,13 +54,33 @@ public class TaxCollectorDataSource {
     }
 
     /*
-     * SELECT ALL
+     * SELECT ALL SUBJEK PAJAK
      */
     public Cursor selectAllSubjekPajak() {
         Cursor cursor = mDatabase.query(
                 TaxCollectorHelper.DAT_SUBJEK_PAJAK, // table
                 new String[] { TaxCollectorHelper.DSP_NM_WP,
                         TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID,
+                        TaxCollectorHelper.DSP_NOP}, // column names
+                null, // where clause
+                null, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
+     * SELECT ALL OBJEK USAHA
+     */
+    public Cursor selectAllObjekUsaha() {
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_PROPERTY_USAHA, // table
+                new String[] { TaxCollectorHelper.DOU_NM_OU,
+                        TaxCollectorHelper.DOU_NPWPD,
+                        TaxCollectorHelper.DOU_TIPE_OU,
                         TaxCollectorHelper.DSP_NOP}, // column names
                 null, // where clause
                 null, // where params
@@ -174,6 +194,61 @@ public class TaxCollectorDataSource {
     }
 
     /*
+     * SELECT PROPERTI USAHA -->> NPWPD
+     */
+    public Cursor selectObjekUsahaNPWPD(String searchKey) {
+        String whereClause = TaxCollectorHelper.DOU_NPWPD + " like ?";
+
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_PROPERTY_USAHA, // table
+                new String[] { TaxCollectorHelper.DOU_NM_OU,
+                        TaxCollectorHelper.DOU_NPWPD,
+                        TaxCollectorHelper.DOU_TIPE_OU,
+                        TaxCollectorHelper.DSP_NOP}, // column names
+                whereClause, // where clause
+                new String[] { "%"+ searchKey +"%" }, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
+     * SELECT OBJEK USAHA HOTEL -->> NPWPD
+     */
+    public Cursor selectHotelNPWPD(String searchKey) {
+        String whereClause = TaxCollectorHelper.DOU_NPWPD + " = ?";
+
+
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_OU_HOTEL, // table
+                new String[] { TaxCollectorHelper.DOU_NPWPD,
+                        TaxCollectorHelper.DSP_NOP,
+                        TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID,
+                        TaxCollectorHelper.DOU_KLASIFIKASI_OU,
+                        TaxCollectorHelper.DOU_NM_OU,
+                        TaxCollectorHelper.DOU_TLP_OU,
+                        TaxCollectorHelper.DOU_EMAIL_OU,
+                        TaxCollectorHelper.DOU_JALAN_OU,
+                        TaxCollectorHelper.DOU_NO_PBB,
+                        TaxCollectorHelper.DOU_NO_IZIN_OU,
+                        TaxCollectorHelper.DOU_TGL_IZIN,
+                        TaxCollectorHelper.DOU_JNS_PEGAWAI_OU,
+                        TaxCollectorHelper.DOU_TARIF_OU,
+                        TaxCollectorHelper.DOU_KD_FASILITAS}, // column names
+                whereClause, // where clause
+                new String[] { searchKey }, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
      * UPDATE SUBJEK PAJAK NOP
      */
     public int updateSubjekPajakNOP(String inputSearchKey,
@@ -270,7 +345,70 @@ public class TaxCollectorDataSource {
     }
 
     /*
-     * INSERT
+     * UPDATE OBJEK USAHA HOTEL
+     */
+    public int updateObjekUsahaHotel(String inputSearchKey,
+                                     String input_DOU_NPWPD,
+                                     String input_DSP_NOP,
+                                     String input_DSP_SUBJEK_PAJAK_ID,
+                                     String input_DOU_KLASIFIKASI_OU,
+                                     String input_DOU_NM_OU,
+                                     String input_DOU_TLP_OU,
+                                     String input_DOU_EMAIL_OU,
+                                     String input_DOU_JALAN_OU,
+                                     String input_DOU_NO_PBB,
+                                     String input_DOU_NO_IZIN_OU,
+                                     String input_DOU_TGL_IZIN,
+                                     String input_DOU_JNS_PEGAWAI_OU,
+                                     String input_DOU_TARIF_OU,
+                                     String input_DOU_KD_FASILITAS) {
+
+
+        ContentValues values = new ContentValues();
+        values.put(TaxCollectorHelper.DOU_NPWPD, input_DOU_NPWPD);
+        values.put(TaxCollectorHelper.DSP_NOP, input_DSP_NOP);
+        values.put(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID, input_DSP_SUBJEK_PAJAK_ID);
+        values.put(TaxCollectorHelper.DOU_KLASIFIKASI_OU, input_DOU_KLASIFIKASI_OU);
+        values.put(TaxCollectorHelper.DOU_NM_OU, input_DOU_NM_OU);
+        values.put(TaxCollectorHelper.DOU_TLP_OU, input_DOU_TLP_OU);
+        values.put(TaxCollectorHelper.DOU_EMAIL_OU, input_DOU_EMAIL_OU);
+        values.put(TaxCollectorHelper.DOU_JALAN_OU, input_DOU_JALAN_OU);
+        values.put(TaxCollectorHelper.DOU_NO_PBB, input_DOU_NO_PBB);
+        values.put(TaxCollectorHelper.DOU_NO_IZIN_OU, input_DOU_NO_IZIN_OU);
+        values.put(TaxCollectorHelper.DOU_TGL_IZIN, input_DOU_TGL_IZIN);
+        values.put(TaxCollectorHelper.DOU_JNS_PEGAWAI_OU, input_DOU_JNS_PEGAWAI_OU);
+        values.put(TaxCollectorHelper.DOU_TARIF_OU, input_DOU_TARIF_OU);
+        values.put(TaxCollectorHelper.DOU_KD_FASILITAS, input_DOU_KD_FASILITAS);
+
+        String whereClause = TaxCollectorHelper.DOU_NPWPD + " = ?";
+
+        int rowsUpdated = mDatabase.update(
+                TaxCollectorHelper.DAT_OU_HOTEL, // table
+                values, // values
+                whereClause,   // where clause
+                new String[] { inputSearchKey }    // where params
+        );
+
+        values = new ContentValues();
+        values.put(TaxCollectorHelper.DOU_NM_OU, input_DOU_NM_OU);
+        values.put(TaxCollectorHelper.DOU_NPWPD, input_DOU_NPWPD);
+        values.put(TaxCollectorHelper.DOU_TIPE_OU, "HOTEL");
+        values.put(TaxCollectorHelper.DSP_NOP, input_DSP_NOP);
+
+        whereClause = TaxCollectorHelper.DOU_NPWPD + " = ?";
+
+        rowsUpdated = mDatabase.update(
+                TaxCollectorHelper.DAT_PROPERTY_USAHA, // table
+                values, // values
+                whereClause,   // where clause
+                new String[] { inputSearchKey }    // where params
+        );
+
+        return rowsUpdated;
+    }
+
+    /*
+     * INSERT SUBJEK PAJAK
      */
     public void addSubjekPajak(String input_DSP_NOP,
                                     String input_DSP_NID_WP,
@@ -318,5 +456,77 @@ public class TaxCollectorDataSource {
             mDatabase.endTransaction();
         }
     }
+
+    /*
+     * INSERT OBJEK USAHA HOTEL
+     */
+    public void addObjekUsahaHotel(String input_DOU_NPWPD,
+                               String input_DSP_NOP,
+                               String input_DSP_SUBJEK_PAJAK_ID,
+                               String input_DOU_KLASIFIKASI_OU,
+                               String input_DOU_NM_OU,
+                               String input_DOU_TLP_OU,
+                               String input_DOU_EMAIL_OU,
+                               String input_DOU_JALAN_OU,
+                               String input_DOU_NO_PBB,
+                               String input_DOU_NO_IZIN_OU,
+                               String input_DOU_TGL_IZIN,
+                               String input_DOU_JNS_PEGAWAI_OU,
+                               String input_DOU_TARIF_OU,
+                               String input_DOU_KD_FASILITAS) {
+
+
+        mDatabase.beginTransaction();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(TaxCollectorHelper.DOU_NPWPD, input_DOU_NPWPD);
+            values.put(TaxCollectorHelper.DSP_NOP, input_DSP_NOP);
+            values.put(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID, input_DSP_SUBJEK_PAJAK_ID);
+            values.put(TaxCollectorHelper.DOU_KLASIFIKASI_OU, input_DOU_KLASIFIKASI_OU);
+            values.put(TaxCollectorHelper.DOU_NM_OU, input_DOU_NM_OU);
+            values.put(TaxCollectorHelper.DOU_TLP_OU, input_DOU_TLP_OU);
+            values.put(TaxCollectorHelper.DOU_EMAIL_OU, input_DOU_EMAIL_OU);
+            values.put(TaxCollectorHelper.DOU_JALAN_OU, input_DOU_JALAN_OU);
+            values.put(TaxCollectorHelper.DOU_NO_PBB, input_DOU_NO_PBB);
+            values.put(TaxCollectorHelper.DOU_NO_IZIN_OU, input_DOU_NO_IZIN_OU);
+            values.put(TaxCollectorHelper.DOU_TGL_IZIN, input_DOU_TGL_IZIN);
+            values.put(TaxCollectorHelper.DOU_JNS_PEGAWAI_OU, input_DOU_JNS_PEGAWAI_OU);
+            values.put(TaxCollectorHelper.DOU_TARIF_OU, input_DOU_TARIF_OU);
+            values.put(TaxCollectorHelper.DOU_KD_FASILITAS, input_DOU_KD_FASILITAS);
+
+            mDatabase.insertOrThrow(
+                    TaxCollectorHelper.DAT_OU_HOTEL, // table
+                    null,
+                    values // values
+            );
+            mDatabase.setTransactionSuccessful();
+        }
+        finally {
+            mDatabase.endTransaction();
+        }
+
+        mDatabase.beginTransaction();
+        try {
+            ContentValues values = new ContentValues();
+            values.put(TaxCollectorHelper.DOU_NM_OU, input_DOU_NM_OU);
+            values.put(TaxCollectorHelper.DOU_NPWPD, input_DOU_NPWPD);
+            values.put(TaxCollectorHelper.DOU_TIPE_OU, "HOTEL");
+            values.put(TaxCollectorHelper.DSP_NOP, input_DSP_NOP);
+
+            mDatabase.insertOrThrow(
+                    TaxCollectorHelper.DAT_PROPERTY_USAHA, // table
+                    null,
+                    values // values
+            );
+            mDatabase.setTransactionSuccessful();
+        }
+        finally {
+            mDatabase.endTransaction();
+        }
+
+    }
+
+
+
 
 }

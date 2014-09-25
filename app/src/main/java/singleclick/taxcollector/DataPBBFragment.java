@@ -17,7 +17,9 @@ public class DataPBBFragment extends Fragment {
     protected TaxCollectorDataSource mDataSource;
     protected String searchKey;
     protected String searchType;
+    protected String objekUsahaPBB;
     protected Cursor cursorSubjekPajak;
+
 
     protected View rootView;
 
@@ -29,13 +31,8 @@ public class DataPBBFragment extends Fragment {
         searchKey = bundle.getString("searchKey");
         searchType = bundle.getString("searchType");
 
-        //System.out.println(searchKey);
-        //System.out.println(searchType);
-
-
         mDataSource = new TaxCollectorDataSource(getActivity());
         mDataSource.open();
-
     }
 
     @Override
@@ -47,9 +44,13 @@ public class DataPBBFragment extends Fragment {
         if(searchType.equals("NOP")) {
             cursorSubjekPajak = mDataSource.selectSubjekPajakNOP(searchKey);
             updateLayoutObjekPajak(cursorSubjekPajak);
-            rootView.findViewById(R.id.layout_AddObjekPajakButton).setVisibility(View.GONE);
+            normalMode();
         }else if(searchType.equals("tambahObjekPajak")) {
             rootView.findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.GONE);
+        }else if(searchType.equals("NPWPD")){
+            cursorSubjekPajak = mDataSource.selectHotelNPWPD(searchKey);
+            updateLayoutFindNIK(cursorSubjekPajak);
+            normalMode();
         }
 
         Button buttonUpdateObjekPajak = (Button) rootView.findViewById(R.id.button_UpdateObjekPajak);
@@ -110,9 +111,22 @@ public class DataPBBFragment extends Fragment {
         });
 
 
-
 		return rootView;
 	}
+
+    private void updateLayoutFindNIK(Cursor cursorSubjekPajak) {
+        cursorSubjekPajak.moveToFirst();
+        while( !cursorSubjekPajak.isAfterLast() ) {
+            String DOU_NO_PBB = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOU_NO_PBB));
+
+            cursorSubjekPajak = mDataSource.selectSubjekPajakNOP(DOU_NO_PBB);
+            updateLayoutObjekPajak(cursorSubjekPajak);
+            normalMode();
+
+            cursorSubjekPajak.moveToNext();
+        }
+        normalMode();
+    }
 
     private void updateLayoutObjekPajak(Cursor cursorSubjekPajak) {
         cursorSubjekPajak.moveToFirst();

@@ -33,6 +33,26 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
     public static final String DSP_STATUS_PEKERJAAN_WP = "STATUS_PEKERJAAN_WP";
     public static final String DSP_NOP ="NOP";
 
+    /* TABLE DAT_PROPERTY_USAHA */
+    public static final String DAT_PROPERTY_USAHA = "DAT_PROPERTY_USAHA";
+    public static final String DOU_NPWPD = "NPWPD";
+    public static final String DOU_TIPE_OU = "TIPE_OU";
+    public static final String DOU_NM_OU = "NM_OU";
+
+    /* TABLE DAT_HOTEL */
+    public static final String DAT_OU_HOTEL = "DAT_OU_HOTEL";
+    public static final String DOU_TLP_OU = "TLP_OU";
+    public static final String DOU_KLASIFIKASI_OU = "KLASIFIKASI_OU";
+    public static final String DOU_EMAIL_OU = "EMAIL_OU";
+    public static final String DOU_JALAN_OU = "JALAN_OU";
+    public static final String DOU_NO_PBB = "NO_PBB";
+    public static final String DOU_NO_IZIN_OU = "NO_IZIN_OU";
+    public static final String DOU_TGL_IZIN = "TGL_IZIN";
+    public static final String DOU_JNS_PEGAWAI_OU = "JNS_PEGAWAI_OU";
+    public static final String DOU_TARIF_OU = "TARIF_OU";
+    public static final String DOU_KD_FASILITAS = "KD_FASILITAS";
+
+
     public static final String TABLE_SUBJEK_PAJAK = "TABLE_SUBJEK_PAJAK";
     public static final String COLUMN_ID = "_ID";
     public static final String COLUMN_NIK = "NIK";
