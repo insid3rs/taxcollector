@@ -100,38 +100,41 @@ public class ObjekUsahaFragment extends Fragment {
         listDataChild = new HashMap<String, List<String>>();
 
         // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
+        listDataHeader.add("PBB");
+        listDataHeader.add("HIBURAN");
+        listDataHeader.add("HOTEL");
+        listDataHeader.add("PARKIR");
+        listDataHeader.add("REKLAME");
+        listDataHeader.add("RESTORAN");
+
+
 
         // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
+        List<String> PBB = new ArrayList<String>();
+        PBB.add("Tambah Data...");
 
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
+        List<String> HIBURAN = new ArrayList<String>();
+        PBB.add("Tambah Data...");
 
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
+        List<String> HOTEL = new ArrayList<String>();
+        PBB.add("Tambah Data...");
 
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        List<String> PARKIR = new ArrayList<String>();
+        PBB.add("Tambah Data...");
+
+        List<String> REKLAME = new ArrayList<String>();
+        PBB.add("Tambah Data...");
+
+        List<String> RESTORAN = new ArrayList<String>();
+        PBB.add("Tambah Data...");
+
+
+        listDataChild.put(listDataHeader.get(0), PBB); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), HIBURAN);
+        listDataChild.put(listDataHeader.get(2), HOTEL);
+        listDataChild.put(listDataHeader.get(2), PARKIR);
+        listDataChild.put(listDataHeader.get(2), REKLAME);
+        listDataChild.put(listDataHeader.get(2), RESTORAN);
     }
 
 
