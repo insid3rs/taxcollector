@@ -61,7 +61,37 @@ public class TaxCollectorDataSource {
                 TaxCollectorHelper.DAT_SUBJEK_PAJAK, // table
                 new String[] { TaxCollectorHelper.DSP_NM_WP,
                         TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID,
-                        TaxCollectorHelper.DSP_NOP}, // column names
+                        TaxCollectorHelper.DSP_NOP,
+                        TaxCollectorHelper.DSP_JALAN_WP,
+                        TaxCollectorHelper.DSP_BLOK_KAV_NO_WP
+                }, // column names
+                null, // where clause
+                null, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
+     * SELECT ALL OBJEK PAJAK
+     */
+    public Cursor selectAllObjekPajak() {
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_OBJEK_PAJAK, // table
+                new String[] { TaxCollectorHelper.DOP_KD_PROPINSI,
+                        TaxCollectorHelper.DOP_KD_DATI2,
+                        TaxCollectorHelper.DOP_KD_KECAMATAN,
+                        TaxCollectorHelper.DOP_KD_KELURAHAN,
+                        TaxCollectorHelper.DOP_KD_BLOK,
+                        TaxCollectorHelper.DOP_NO_URUT,
+                        TaxCollectorHelper.DOP_KD_JNS_OP,
+                        TaxCollectorHelper.DOP_JALAN_OP,
+                        TaxCollectorHelper.DOP_BLOK_KAV_NO_OP,
+                        TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID
+                }, // column names
                 null, // where clause
                 null, // where params
                 null, // groupby
@@ -160,7 +190,7 @@ public class TaxCollectorDataSource {
     }
 
     /*
-     * SELECT SUBJEK PAJAK -->> NOP
+     * SELECT SUBJEK PAJAK -->> NAMA WP
      */
     public Cursor selectSubjekPajakNamaWP(String searchKey) {
         String whereClause = TaxCollectorHelper.DSP_NM_WP + " like ?";
@@ -194,6 +224,47 @@ public class TaxCollectorDataSource {
     }
 
     /*
+     * SELECT OBJEK PAJAK -->> NOP
+     */
+    public Cursor selectObjekPajakNOP(String searchKey) {
+        String whereClause = TaxCollectorHelper.DOP_KD_PROPINSI + " = ? AND " +
+                                TaxCollectorHelper.DOP_KD_DATI2 + " = ? AND " +
+                                TaxCollectorHelper.DOP_KD_KECAMATAN + " = ? AND " +
+                                TaxCollectorHelper.DOP_KD_KELURAHAN + " = ? AND " +
+                                TaxCollectorHelper.DOP_KD_BLOK + " = ? AND " +
+                                TaxCollectorHelper.DOP_NO_URUT + " = ? AND " +
+                                TaxCollectorHelper.DOP_KD_JNS_OP + " = ?";
+
+
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_OBJEK_PAJAK, // table
+                new String[] { TaxCollectorHelper.DOP_KD_PROPINSI,
+                        TaxCollectorHelper.DOP_KD_DATI2,
+                        TaxCollectorHelper.DOP_KD_KECAMATAN,
+                        TaxCollectorHelper.DOP_KD_KELURAHAN,
+                        TaxCollectorHelper.DOP_KD_BLOK,
+                        TaxCollectorHelper.DOP_NO_URUT,
+                        TaxCollectorHelper.DOP_KD_JNS_OP,
+                        TaxCollectorHelper.DOP_JALAN_OP,
+                        TaxCollectorHelper.DOP_BLOK_KAV_NO_OP,
+                        TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID}, // column names
+                whereClause, // where clause
+                new String[] { searchKey.substring(0, 2),
+                        searchKey.substring(2, 4),
+                        searchKey.substring(4, 7),
+                        searchKey.substring(7, 10),
+                        searchKey.substring(10, 13),
+                        searchKey.substring(13, 17),
+                        searchKey.substring(17, 18)}, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
      * SELECT PROPERTI USAHA -->> NPWPD
      */
     public Cursor selectObjekUsahaNPWPD(String searchKey) {
@@ -207,6 +278,28 @@ public class TaxCollectorDataSource {
                         TaxCollectorHelper.DSP_NOP}, // column names
                 whereClause, // where clause
                 new String[] { "%"+ searchKey +"%" }, // where params
+                null, // groupby
+                null, // having
+                null  // orderby
+        );
+
+        return cursor;
+    }
+
+    /*
+     * SELECT PROPERTI USAHA -->> NOP
+     */
+    public Cursor selectObjekUsahaNOP(String searchKey) {
+        String whereClause = TaxCollectorHelper.DSP_NOP + " = ?";
+
+        Cursor cursor = mDatabase.query(
+                TaxCollectorHelper.DAT_PROPERTY_USAHA, // table
+                new String[] { TaxCollectorHelper.DOU_NM_OU,
+                        TaxCollectorHelper.DOU_NPWPD,
+                        TaxCollectorHelper.DOU_TIPE_OU,
+                        TaxCollectorHelper.DSP_NOP}, // column names
+                whereClause, // where clause
+                new String[] { searchKey }, // where params
                 null, // groupby
                 null, // having
                 null  // orderby

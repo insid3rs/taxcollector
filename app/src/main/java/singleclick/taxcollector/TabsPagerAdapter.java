@@ -49,7 +49,11 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
 
 		case 1:
-            if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hotel")) {
+            if(searchType.equals("NIK") || searchType.equals("NOP")) {
+                ObjekUsahaFragment ObjekUsahaFragment = new ObjekUsahaFragment();
+                ObjekUsahaFragment.setArguments(data);
+                return ObjekUsahaFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hotel")) {
                 DataHotelFragment DataHotelFragment = new DataHotelFragment();
                 DataHotelFragment.setArguments(data);
                 return DataHotelFragment;
@@ -61,8 +65,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 return new DataReklameFragment();
             }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("restoran")) {
                 return new DataRestoranFragment();
-            }else{
-                return new ObjekUsahaFragment();
             }
 		}
 

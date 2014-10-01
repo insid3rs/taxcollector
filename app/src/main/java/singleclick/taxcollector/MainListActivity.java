@@ -41,12 +41,15 @@ public class MainListActivity extends ListActivity {
 
     private final String KEY_SEARCH = "searchKey";
     private final String KEY_NAME = "name";
+    private final String KEY_ADRESS = "alamat";
 
     private String namaDSP;
     private String subjekPajakID;
     private String subjekPajakNOP;
     private String subjekPajakNPWPD;
     private String objekUsahaType;
+    private String alamatNOP;
+    private String noNOP;
 
 
     @Override
@@ -71,7 +74,8 @@ public class MainListActivity extends ListActivity {
                     Cursor cursor = mDataSource.selectSubjekPajakNIK(searchTextEdit.getText().toString());
                     updateList(cursor);
                 }else if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
-                    Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    //Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    Cursor cursor = mDataSource.selectAllObjekPajak();
                     updateList(cursor);
                 }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")){
                     Cursor cursor = mDataSource.selectObjekUsahaNPWPD(searchTextEdit.getText().toString());
@@ -166,11 +170,11 @@ public class MainListActivity extends ListActivity {
         super.onResume();
         mDataSource.open();
 
-        if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
+        if(searchSpinner.getSelectedItem().toString().equals("NIK")){
             Cursor cursor = mDataSource.selectAllSubjekPajak();
             updateList(cursor);
-        }else if(searchSpinner.getSelectedItem().toString().equals("NIK")){
-            Cursor cursor = mDataSource.selectAllSubjekPajak();
+        }else if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
+            Cursor cursor = mDataSource.selectAllObjekPajak();
             updateList(cursor);
         }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")){
             Cursor cursor = mDataSource.selectAllObjekUsaha();
@@ -190,16 +194,32 @@ public class MainListActivity extends ListActivity {
             if(searchSpinner.getSelectedItem().toString().equals("NIK")) {
                 namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
                 subjekPajakID = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+                alamatNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_JALAN_WP));
+                noNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_BLOK_KAV_NO_WP));
                 nopItem.put(KEY_SEARCH, subjekPajakID);
+                nopItem.put(KEY_ADRESS, alamatNOP + noNOP);
             }else if(searchSpinner.getSelectedItem().toString().equals("NOP") || searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")) {
-                namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
-                subjekPajakNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NOP));
+                namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+                String DOP_KD_PROPINSI = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_PROPINSI));
+                String DOP_KD_DATI2 = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_DATI2));
+                String DOP_KD_KECAMATAN = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_KECAMATAN));
+                String DOP_KD_KELURAHAN = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_KELURAHAN));
+                String DOP_KD_BLOK = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_BLOK));
+                String DOP_NO_URUT = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_NO_URUT));
+                String DOP_KD_JNS_OP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_JNS_OP));
+
+                subjekPajakNOP = DOP_KD_PROPINSI + DOP_KD_DATI2 + DOP_KD_KECAMATAN + DOP_KD_KELURAHAN + DOP_KD_BLOK + DOP_NO_URUT + DOP_KD_JNS_OP;
+                alamatNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_JALAN_OP));
+                noNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_BLOK_KAV_NO_OP));
+
                 nopItem.put(KEY_SEARCH, subjekPajakNOP);
+                nopItem.put(KEY_ADRESS, alamatNOP + noNOP);
             }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")) {
                 namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_NM_OU));
                 subjekPajakNPWPD = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_NPWPD));
                 objekUsahaType = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_TIPE_OU));
                 nopItem.put(KEY_SEARCH, subjekPajakNPWPD);
+                nopItem.put(KEY_ADRESS, "");
             }
             nopItem.put(KEY_NAME, namaDSP);
 
@@ -211,8 +231,8 @@ public class MainListActivity extends ListActivity {
             cursor.moveToNext();
         }
 
-        String[] keys = {KEY_SEARCH, KEY_NAME};
-        int[] ids = {R.id.text1, R.id.text2};
+        String[] keys = {KEY_SEARCH, KEY_NAME, KEY_ADRESS};
+        int[] ids = {R.id.text1, R.id.text2, R.id.text3};
         SimpleAdapter adapter = new SimpleAdapter(this, mWPSearchList, R.layout.search_item_layout, keys, ids);
 
         setListAdapter(adapter);

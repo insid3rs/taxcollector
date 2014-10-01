@@ -42,14 +42,14 @@ public class DataPBBFragment extends Fragment {
 		rootView = inflater.inflate(R.layout.fragment_data_pbb, container, false);
 
         if(searchType.equals("NOP")) {
-            cursorSubjekPajak = mDataSource.selectSubjekPajakNOP(searchKey);
+            cursorSubjekPajak = mDataSource.selectObjekPajakNOP(searchKey);
             updateLayoutObjekPajak(cursorSubjekPajak);
             normalMode();
         }else if(searchType.equals("tambahObjekPajak")) {
             rootView.findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.GONE);
         }else if(searchType.equals("NPWPD")){
             cursorSubjekPajak = mDataSource.selectHotelNPWPD(searchKey);
-            updateLayoutFindNIK(cursorSubjekPajak);
+            updateLayoutObjekUsahaFindNIK(cursorSubjekPajak);
             normalMode();
         }
 
@@ -114,12 +114,12 @@ public class DataPBBFragment extends Fragment {
 		return rootView;
 	}
 
-    private void updateLayoutFindNIK(Cursor cursorSubjekPajak) {
+    private void updateLayoutObjekUsahaFindNIK(Cursor cursorSubjekPajak) {
         cursorSubjekPajak.moveToFirst();
         while( !cursorSubjekPajak.isAfterLast() ) {
             String DOU_NO_PBB = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOU_NO_PBB));
 
-            cursorSubjekPajak = mDataSource.selectSubjekPajakNOP(DOU_NO_PBB);
+            cursorSubjekPajak = mDataSource.selectObjekPajakNOP(DOU_NO_PBB);
             updateLayoutObjekPajak(cursorSubjekPajak);
             normalMode();
 
@@ -128,7 +128,7 @@ public class DataPBBFragment extends Fragment {
         normalMode();
     }
 
-    private void updateLayoutObjekPajak(Cursor cursorSubjekPajak) {
+    private void updateLayoutSubjekPajak(Cursor cursorSubjekPajak) {
         cursorSubjekPajak.moveToFirst();
         while( !cursorSubjekPajak.isAfterLast() ) {
             // do stuff
@@ -141,7 +141,7 @@ public class DataPBBFragment extends Fragment {
             String DSP_KD_POS_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_KD_POS_WP));
             String DSP_KELURAHAN_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_KELURAHAN_WP));
             String DSP_KOTA_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_KOTA_WP));
-            String DSP_NOP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_NOP));
+            //String DSP_NOP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_NOP));
             String DSP_RT_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_RT_WP));
             String DSP_RW_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_RW_WP));
             String DSP_NPWP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_NPWP));
@@ -157,12 +157,39 @@ public class DataPBBFragment extends Fragment {
             ((EditText) rootView.findViewById(R.id.editText_DSP_KD_POS_WP)).setText(DSP_KD_POS_WP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_KELURAHAN_WP)).setText(DSP_KELURAHAN_WP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_KOTA_WP)).setText(DSP_KOTA_WP);
-            ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setText(DSP_NOP);
+            //((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setText(DSP_NOP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_RT_WP)).setText(DSP_RT_WP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_RW_WP)).setText(DSP_RW_WP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_NPWP)).setText(DSP_NPWP);
             //((EditText) rootView.findViewById(R.id.editText_DSP_STATUS_PEKERJAAN_WP)).setText(DSP_STATUS_PEKERJAAN_WP);
             ((EditText) rootView.findViewById(R.id.editText_DSP_TELP_WP)).setText(DSP_TELP_WP);
+
+            cursorSubjekPajak.moveToNext();
+
+            normalMode();
+        }
+    }
+
+    private void updateLayoutObjekPajak(Cursor cursorSubjekPajak) {
+        cursorSubjekPajak.moveToFirst();
+        while( !cursorSubjekPajak.isAfterLast() ) {
+            // do stuff
+            String WPNIK = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+            String DOP_KD_PROPINSI = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_PROPINSI));
+            String DOP_KD_DATI2 = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_DATI2));
+            String DOP_KD_KECAMATAN = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_KECAMATAN));
+            String DOP_KD_KELURAHAN = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_KELURAHAN));
+            String DOP_KD_BLOK = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_BLOK));
+            String DOP_NO_URUT = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NO_URUT));
+            String DOP_KD_JNS_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_JNS_OP));
+
+
+            ((EditText) rootView.findViewById(R.id.editText_NIK)).setText(WPNIK);
+            ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setText(DOP_KD_PROPINSI + DOP_KD_DATI2 + DOP_KD_KECAMATAN + DOP_KD_KELURAHAN + DOP_KD_BLOK + DOP_NO_URUT + DOP_KD_JNS_OP);
+
+            cursorSubjekPajak = mDataSource.selectSubjekPajakNIK(WPNIK);
+            updateLayoutSubjekPajak(cursorSubjekPajak);
+
 
             cursorSubjekPajak.moveToNext();
 

@@ -33,6 +33,37 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
     public static final String DSP_STATUS_PEKERJAAN_WP = "STATUS_PEKERJAAN_WP";
     public static final String DSP_NOP ="NOP";
 
+    /* TABLE DAT_OBJEK_PAJAK */
+    public static final String DAT_OBJEK_PAJAK = "DAT_OBJEK_PAJAK";
+    public static final String DOP_KD_PROPINSI = "KD_PROPINSI";
+    public static final String DOP_KD_DATI2 = "KD_DATI2";
+    public static final String DOP_KD_KECAMATAN = "KD_KECAMATAN";
+    public static final String DOP_KD_KELURAHAN = "KD_KELURAHAN";
+    public static final String DOP_KD_BLOK = "KD_BLOK";
+    public static final String DOP_NO_URUT = "NO_URUT";
+    public static final String DOP_KD_JNS_OP = "KD_JNS_OP";
+    public static final String DOP_NO_FORMULIR_SPOP = "NO_FORMULIR_SPOP";
+    public static final String DOP_NO_PERSIL = "NO_PERSIL";
+    public static final String DOP_JALAN_OP = "JALAN_OP";
+    public static final String DOP_BLOK_KAV_NO_OP = "BLOK_KAV_NO_OP";
+    public static final String DOP_RW_OP = "RW_OP";
+    public static final String DOP_RT_OP = "RT_OP";
+    public static final String DOP_KD_STATUS_CABANG = "KD_STATUS_CABANG";
+    public static final String DOP_KD_STATUS_WP = "KD_STATUS_WP";
+    public static final String DOP_TOTAL_LUAS_BUMI = "TOTAL_LUAS_BUMI";
+    public static final String DOP_TOTAL_LUAS_BNG = "TOTAL_LUAS_BNG";
+    public static final String DOP_NJOP_BUMI = "NJOP_BUMI";
+    public static final String DOP_NJOP_BNG = "NJOP_BNG";
+    public static final String DOP_STATUS_PETA_OP = "STATUS_PETA_OP";
+    public static final String DOP_JNS_TRANSAKSI_OP = "JNS_TRANSAKSI_OP";
+    public static final String DOP_TGL_PENDATAAN_OP = "TGL_PENDATAAN_OP";
+    public static final String DOP_NIP_PENDATA = "NIP_PENDATA";
+    public static final String DOP_GL_PEMERIKSAAN_OP = "GL_PEMERIKSAAN_OP";
+    public static final String DOP_NIP_PEMERIKSA_OP = "NIP_PEMERIKSA_OP";
+    public static final String DOP_TGL_PEREKAMAN_OP = "TGL_PEREKAMAN_OP";
+    public static final String DOP_NIP_PEREKAM_OP = "NIP_PEREKAM_OP";
+    public static final String DOP_KD_UNIT = "KD_UNIT";
+
     /* TABLE DAT_PROPERTY_USAHA */
     public static final String DAT_PROPERTY_USAHA = "DAT_PROPERTY_USAHA";
     public static final String DOU_NPWPD = "NPWPD";
