@@ -28,7 +28,10 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         Bundle data = new Bundle();
         data.putString("searchKey", searchKey);
         data.putString("searchType", searchType);
+        data.putString("objekUsahaType", objekUsahaType);
 
+        //System.out.println("aa"+searchKey);
+        //System.out.println(searchType);
 
 		switch (index) {
 		case 0:
@@ -36,16 +39,51 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 SubjekPajakFragment SubjekPajakFragment = new SubjekPajakFragment();
                 SubjekPajakFragment.setArguments(data);
                 return SubjekPajakFragment;
-            }else if(searchType.equals("NOP") || searchType.equals("NPWPD")){
-                DataPBBFragment DataLokasiFragment = new DataPBBFragment();
-                DataLokasiFragment.setArguments(data);
-                return DataLokasiFragment;
+            }else if(searchType.equals("NOP") || searchType.equals("tambahPBB")){
+                DataPBBFragment DataPBBFragment = new DataPBBFragment();
+                DataPBBFragment.setArguments(data);
+                return DataPBBFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hotel")) {
+                DataHotelFragment DataHotelFragment = new DataHotelFragment();
+                DataHotelFragment.setArguments(data);
+                return DataHotelFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hiburan")) {
+                DataHiburanFragment DataHiburanFragment = new DataHiburanFragment();
+                DataHiburanFragment.setArguments(data);
+                return DataHiburanFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("parkir")) {
+                DataParkirFragment DataParkirFragment = new DataParkirFragment();
+                DataParkirFragment.setArguments(data);
+                return DataParkirFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("reklame")) {
+                DataReklameFragment DataReklameFragment = new DataReklameFragment();
+                DataReklameFragment.setArguments(data);
+                return DataReklameFragment;
+            }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("restoran")) {
+                DataRestoranFragment DataRestoranFragment = new DataRestoranFragment();
+                DataRestoranFragment.setArguments(data);
+                return DataRestoranFragment;
             }else if(searchType.equals("tambahHotel")){
                 DataHotelFragment DataHotelFragment = new DataHotelFragment();
                 DataHotelFragment.setArguments(data);
                 return DataHotelFragment;
+            }else if(searchType.equals("tambahParkir")){
+                DataParkirFragment DataParkirFragment = new DataParkirFragment();
+                DataParkirFragment.setArguments(data);
+                return DataParkirFragment;
+            }else if(searchType.equals("tambahHiburan")){
+                DataHiburanFragment DataHiburanFragment = new DataHiburanFragment();
+                DataHiburanFragment.setArguments(data);
+                return DataHiburanFragment;
+            }else if(searchType.equals("tambahReklame")){
+                DataReklameFragment DataReklameFragment = new DataReklameFragment();
+                DataReklameFragment.setArguments(data);
+                return DataReklameFragment;
+            }else if(searchType.equals("tambahRestoran")){
+                DataRestoranFragment DataRestoranFragment = new DataRestoranFragment();
+                DataRestoranFragment.setArguments(data);
+                return DataRestoranFragment;
             }
-
 
 
 		case 1:
@@ -58,13 +96,49 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 DataHotelFragment.setArguments(data);
                 return DataHotelFragment;
             }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("hiburan")) {
-                return new DataHiburanFragment();
+                DataHiburanFragment DataHiburanFragment = new DataHiburanFragment();
+                DataHiburanFragment.setArguments(data);
+                return DataHiburanFragment;
             }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("parkir")) {
-                return new DataParkirFragment();
+                DataParkirFragment DataParkirFragment = new DataParkirFragment();
+                DataParkirFragment.setArguments(data);
+                return DataParkirFragment;
             }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("reklame")) {
-                return new DataReklameFragment();
+                DataReklameFragment DataReklameFragment = new DataReklameFragment();
+                DataReklameFragment.setArguments(data);
+                return DataReklameFragment;
             }else if(searchType.equals("NPWPD") && objekUsahaType.toLowerCase().equals("restoran")) {
-                return new DataRestoranFragment();
+                DataRestoranFragment DataRestoranFragment = new DataRestoranFragment();
+                DataRestoranFragment.setArguments(data);
+                return DataRestoranFragment;
+            }else if(searchType.equals("tambahSubjekPajak")){
+                SubjekPajakFragment SubjekPajakFragment = new SubjekPajakFragment();
+                SubjekPajakFragment.setArguments(data);
+                return SubjekPajakFragment;
+            }else if(searchType.equals("tambahPBB")){
+                DataPBBFragment DataPBBFragment = new DataPBBFragment();
+                DataPBBFragment.setArguments(data);
+                return DataPBBFragment;
+            }else if(searchType.equals("tambahHotel")){
+                DataHotelFragment DataHotelFragment = new DataHotelFragment();
+                DataHotelFragment.setArguments(data);
+                return DataHotelFragment;
+            }else if(searchType.equals("tambahParkir")){
+                DataParkirFragment DataParkirFragment = new DataParkirFragment();
+                DataParkirFragment.setArguments(data);
+                return DataParkirFragment;
+            }else if(searchType.equals("tambahHiburan")){
+                DataHiburanFragment DataHiburanFragment = new DataHiburanFragment();
+                DataHiburanFragment.setArguments(data);
+                return DataHiburanFragment;
+            }else if(searchType.equals("tambahReklame")){
+                DataReklameFragment DataReklameFragment = new DataReklameFragment();
+                DataReklameFragment.setArguments(data);
+                return DataReklameFragment;
+            }else if(searchType.equals("tambahRestoran")){
+                DataRestoranFragment DataRestoranFragment = new DataRestoranFragment();
+                DataRestoranFragment.setArguments(data);
+                return DataRestoranFragment;
             }
 		}
 

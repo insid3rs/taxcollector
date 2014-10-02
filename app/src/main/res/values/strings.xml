@@ -21,13 +21,13 @@
     <string name="search_prompt">Pilih Kategori</string>
 
     <string-array name="search_arrays">
+        <item>Alamat Objek Pajak</item>
         <item>NIK</item>
         <item>NOP</item>
         <item>NPWPD</item>
-        <item>Alamat Subjek Pajak</item>
         <item>Nama Subjek Pajak</item>
-
     </string-array>
+
     <string-array name="status_subjek_pajak">
         <item>Pemilik</item>
         <item>Penyewa</item>

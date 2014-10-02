@@ -58,11 +58,13 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
     public static final String DOP_JNS_TRANSAKSI_OP = "JNS_TRANSAKSI_OP";
     public static final String DOP_TGL_PENDATAAN_OP = "TGL_PENDATAAN_OP";
     public static final String DOP_NIP_PENDATA = "NIP_PENDATA";
-    public static final String DOP_GL_PEMERIKSAAN_OP = "GL_PEMERIKSAAN_OP";
+    public static final String DOP_TGL_PEMERIKSAAN_OP = "TGL_PEMERIKSAAN_OP";
     public static final String DOP_NIP_PEMERIKSA_OP = "NIP_PEMERIKSA_OP";
     public static final String DOP_TGL_PEREKAMAN_OP = "TGL_PEREKAMAN_OP";
     public static final String DOP_NIP_PEREKAM_OP = "NIP_PEREKAM_OP";
     public static final String DOP_KD_UNIT = "KD_UNIT";
+    public static final String DOP_PETA = "PETA";
+
 
     /* TABLE DAT_PROPERTY_USAHA */
     public static final String DAT_PROPERTY_USAHA = "DAT_PROPERTY_USAHA";
@@ -82,6 +84,23 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
     public static final String DOU_JNS_PEGAWAI_OU = "JNS_PEGAWAI_OU";
     public static final String DOU_TARIF_OU = "TARIF_OU";
     public static final String DOU_KD_FASILITAS = "KD_FASILITAS";
+
+    /* TABLE DAT_PARKIR */
+    public static final String DAT_OU_PARKIR = "DAT_OU_PARKIR";
+    public static final String DOU_KAPASITAS_MOBIL_OU = "KAPASITAS_MOBIL_OU";
+    public static final String DOU_KAPASITAS_MOTOR_OU = "KAPASITAS_MOTOR_OU";
+    public static final String DOU_TRF_MOBIL_JAM_PERTAMA_OU = "TRF_MOBIL_JAM_PERTAMA_OU";
+    public static final String DOU_TRF_MOBIL_JAM_SELANJUTNYA_OU = "TRF_MOBIL_JAM_SELANJUTNYA_OU";
+    public static final String DOU_TRF_MOBIL_MAX_OU = "TRF_MOBIL_MAX_OU";
+    public static final String DOU_TRF_MOBIL_BULANAN_OU = "TRF_MOBIL_BULANAN_OU";
+    public static final String DOU_TRF_MOTOR_JAM_PERTAMA_OU = "TRF_MOTOR_JAM_PERTAMA_OU";
+    public static final String DOU_TRF_MOTOR_JAM_SELANJUTNYA_OU = "TRF_MOTOR_JAM_SELANJUTNYA_OU";
+    public static final String DOU_TRF_MOTOR_MAX_OU = "TRF_MOTOR_MAX_OU";
+    public static final String DOU_TRF_MOTOR_BULANAN_OU = "TRF_MOTOR_BULANAN_OU";
+    public static final String DOU_TRF_BOX_JAM_PERTAMA_OU = "TRF_BOX_JAM_PERTAMA_OU";
+    public static final String DOU_TRF_BOX_JAM_SELANJUTNYA_OU = "TRF_BOX_JAM_SELANJUTNYA_OU";
+    public static final String DOU_TRF_BOX_MAX_OU = "TRF_BOX_MAX_OU";
+    public static final String DOU_TRF_BOX_BULANAN_OU = "TRF_BOX_BULANAN_OU";
 
 
     public static final String TABLE_SUBJEK_PAJAK = "TABLE_SUBJEK_PAJAK";
@@ -135,11 +154,12 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
                 "JNS_TRANSAKSI_OP TEXT NOT NULL, " +
                 "TGL_PENDATAAN_OP TEXT, " +
                 "NIP_PENDATA TEXT, " +
-                "GL_PEMERIKSAAN_OP TEXT, " +
+                "TGL_PEMERIKSAAN_OP TEXT, " +
                 "NIP_PEMERIKSA_OP TEXT, " +
                 "TGL_PEREKAMAN_OP TEXT NOT NULL, " +
                 "NIP_PEREKAM_OP TEXT, " +
-                "KD_UNIT TEXT)");
+                "KD_UNIT TEXT," +
+                "PETA TEXT)");
 
         db.execSQL("CREATE TABLE DAT_OP_BANGUNAN (" +
                 "KD_PROPINSI TEXT NOT NULL, " +
@@ -325,13 +345,17 @@ public class TaxCollectorHelper extends SQLiteOpenHelper {
 
         db.execSQL("insert into DAT_SUBJEK_PAJAK values('952062204480028','0',' SOEKOTJO NEGORO ','JL PALMERAH BARAT VI ','48','10','3',' PALMERAH ',' JAKARTA BARAT','','','','','-','5',' 317401000000000000')");
 
-        db.execSQL("insert into DAT_PROPERTY_USAHA values('12312432423', 317401100000000000,'HOTEL', 'HOTEL APA AJA')");
+        db.execSQL("insert into DAT_OBJEK_PAJAK values('31', '73', '070', '002', '010', '0107', '0', '953092511430192', '20070007264', '', 'JL TANAH ABANG II', '72', '05', '002', '0', '1', '637', '271', '12,450,165,000', '410,836,000', '1', '2', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '2','')");
 
-        db.execSQL("insert into DAT_OU_HOTEL values('12312432423','317401100000000000','1212121','HOTEL','HOTEL APA AJA','021-87488333','','JL LINGKAR SENAYAN','317401100000000000','12312312343','','','','')");
+        db.execSQL("insert into DAT_OBJEK_PAJAK values('31', '73', '070', '002', '010', '0118', '0', '09.5410.120358.0713', '20070007268', '', 'JL CIDENG TIMUR', '67 A', '05', '002', '0', '1', '113', '376', '2,632,335,000', '689,208,000', '1', '2', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '2','')");
 
-        db.execSQL("insert into DAT_OBJEK_PAJAK values('31', '73', '070', '002', '010', '0107', '0', '953092511430192', '20070007264', '', 'JL TANAH ABANG II', '72', '05', '002', '0', '1', '637', '271', '12,450,165,000', '410,836,000', '1', '2', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '2')");
+        db.execSQL("insert into DAT_PROPERTY_USAHA values('12312432423', 317307000201001070,'HOTEL', 'HOTEL APA AJA')");
 
-        db.execSQL("insert into DAT_OBJEK_PAJAK values('31', '73', '070', '002', '010', '0118', '0', '09.5410.120358.0713', '20070007268', '', 'JL CIDENG TIMUR', '67 A', '05', '002', '0', '1', '113', '376', '2,632,335,000', '689,208,000', '1', '2', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '01/03/2008 00:00:00', '060000000', '2')");
+        db.execSQL("insert into DAT_OU_HOTEL values('12312432423','317307000201001070','1212121','HOTEL','HOTEL APA AJA','021-87488333','','JL LINGKAR SENAYAN','317307000201001070','12312312343','','','','')");
+
+        db.execSQL("insert into DAT_PROPERTY_USAHA values('2222222222222', 317401100000000000,'PARKIR', 'PARKIR JALAN SENAYAN')");
+
+        db.execSQL("insert into DAT_OU_PARKIR values('2222222222222','317401100000000000','1212121','PARKIR', 'PARKIR JALAN SENAYAN','021-65331232','','JL LINGKAR SENAYAN','317401100000000000','1773882992','','200','300','2000', '2000', '50000', '1000000', '2000', '2000', '50000', '1000000', '2000', '2000', '50000', '1000000')");
 
     }
 

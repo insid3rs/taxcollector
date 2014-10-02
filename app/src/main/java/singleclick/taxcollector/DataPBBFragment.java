@@ -18,7 +18,9 @@ public class DataPBBFragment extends Fragment {
     protected String searchKey;
     protected String searchType;
     protected String objekUsahaPBB;
+    protected String objekUsahaType;
     protected Cursor cursorSubjekPajak;
+
 
 
     protected View rootView;
@@ -30,6 +32,7 @@ public class DataPBBFragment extends Fragment {
 
         searchKey = bundle.getString("searchKey");
         searchType = bundle.getString("searchType");
+        objekUsahaType = bundle.getString("objekUsahaType");
 
         mDataSource = new TaxCollectorDataSource(getActivity());
         mDataSource.open();
@@ -45,13 +48,18 @@ public class DataPBBFragment extends Fragment {
             cursorSubjekPajak = mDataSource.selectObjekPajakNOP(searchKey);
             updateLayoutObjekPajak(cursorSubjekPajak);
             normalMode();
-        }else if(searchType.equals("tambahObjekPajak")) {
+        }else if(searchType.equals("tambahPBB")) {
             rootView.findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.GONE);
-        }else if(searchType.equals("NPWPD")){
+        }
+        /*else if(searchType.equals("NPWPD") && objekUsahaType.equalsIgnoreCase("hotel")){
             cursorSubjekPajak = mDataSource.selectHotelNPWPD(searchKey);
             updateLayoutObjekUsahaFindNIK(cursorSubjekPajak);
             normalMode();
-        }
+        }else if(searchType.equals("NPWPD") && objekUsahaType.equalsIgnoreCase("parkir")){
+            cursorSubjekPajak = mDataSource.selectParkirNPWPD(searchKey);
+            updateLayoutObjekUsahaFindNIK(cursorSubjekPajak);
+            normalMode();
+        }*/
 
         Button buttonUpdateObjekPajak = (Button) rootView.findViewById(R.id.button_UpdateObjekPajak);
         Button buttonAddObjekPajak = (Button) rootView.findViewById(R.id.button_AddObjekPajak);
@@ -61,23 +69,31 @@ public class DataPBBFragment extends Fragment {
             public void onClick(View view) {
                 mDataSource.open();
 
-                mDataSource.updateSubjekPajakNOP(searchKey,
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_NIK)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_Nama)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_BLOK_KAV_NO_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_EMAIL_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_HP_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_JALAN_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KD_POS_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KELURAHAN_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KOTA_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_RT_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_RW_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_NPWP)).getText().toString(),
-                        //((EditText) rootView.findViewById(R.id.editText_DSP_STATUS_PEKERJAAN_WP)).setText(DSP_STATUS_PEKERJAAN_WP);
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_TELP_WP)).getText().toString()
-                );
+                mDataSource.updateObjekPajakNOP(searchKey,
+                    ((EditText) rootView.findViewById(R.id.editText_DOP_JALAN_WP)).getText().toString(),
+                    ((EditText) rootView.findViewById(R.id.editText_DOP_BLOK_KAV_NO_WP)).getText().toString(),
+                    ((EditText) rootView.findViewById(R.id.editText_NIK)).getText().toString(),
+                    "0", // input_DOP_NO_FORMULIR_SPOP
+                    "0", // input_DOP_NO_PERSIL
+                    ((EditText) rootView.findViewById(R.id.editText_DOP_RW_WP)).getText().toString(),
+                    ((EditText) rootView.findViewById(R.id.editText_DOP_RT_WP)).getText().toString(),
+                    "0", // input_DOP_KD_STATUS_CABANG
+                    "0", // input_DOP_KD_STATUS_WP
+                    ((EditText) rootView.findViewById(R.id.editText_LuasTanah)).getText().toString(),
+                    ((EditText) rootView.findViewById(R.id.editText_JumlahBangunan)).getText().toString(),
+                    "0", // input_DOP_NJOP_BUMI
+                    "0", // input_DOP_NJOP_BNG
+                    "0", // input_DOP_STATUS_PETA_OP
+                    "0", // input_DOP_JNS_TRANSAKSI_OP
+                    "0", // input_DOP_TGL_PENDATAAN_OP
+                    "0", // input_DOP_NIP_PENDATA
+                    "0", // input_DOP_TGL_PEMERIKSAAN_OP
+                    "0", // input_DOP_NIP_PEMERIKSA_OP
+                    "0", // input_DOP_TGL_PEREKAMAN_OP
+                    "0", // input_DOP_NIP_PEREKAM_OP
+                    "0", // input_DOP_KD_UNIT
+                    ((EditText) rootView.findViewById(R.id.editText_DOP_Map_Coordinate)).getText().toString()
+                    );
 
                 normalMode();
             }
@@ -88,22 +104,31 @@ public class DataPBBFragment extends Fragment {
             public void onClick(View view) {
                 mDataSource.open();
 
-                mDataSource.addSubjekPajak(
+                mDataSource.addObjekPajak(
                         ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).getText().toString(),
+                        ((EditText) rootView.findViewById(R.id.editText_DOP_JALAN_WP)).getText().toString(),
+                        ((EditText) rootView.findViewById(R.id.editText_DOP_BLOK_KAV_NO_WP)).getText().toString(),
                         ((EditText) rootView.findViewById(R.id.editText_NIK)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_Nama)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_BLOK_KAV_NO_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_EMAIL_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_HP_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_JALAN_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KD_POS_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KELURAHAN_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_KOTA_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_RT_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_RW_WP)).getText().toString(),
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_NPWP)).getText().toString(),
-                        //((EditText) rootView.findViewById(R.id.editText_DSP_STATUS_PEKERJAAN_WP)).setText(DSP_STATUS_PEKERJAAN_WP);
-                        ((EditText) rootView.findViewById(R.id.editText_DSP_TELP_WP)).getText().toString()
+                        "0", // input_DOP_NO_FORMULIR_SPOP
+                        "0", // input_DOP_NO_PERSIL
+                        ((EditText) rootView.findViewById(R.id.editText_DOP_RW_WP)).getText().toString(),
+                        ((EditText) rootView.findViewById(R.id.editText_DOP_RT_WP)).getText().toString(),
+                        "0", // input_DOP_KD_STATUS_CABANG
+                        "0", // input_DOP_KD_STATUS_WP
+                        ((EditText) rootView.findViewById(R.id.editText_LuasTanah)).getText().toString(),
+                        ((EditText) rootView.findViewById(R.id.editText_JumlahBangunan)).getText().toString(),
+                        "0", // input_DOP_NJOP_BUMI
+                        "0", // input_DOP_NJOP_BNG
+                        "0", // input_DOP_STATUS_PETA_OP
+                        "0", // input_DOP_JNS_TRANSAKSI_OP
+                        "0", // input_DOP_TGL_PENDATAAN_OP
+                        "0", // input_DOP_NIP_PENDATA
+                        "0", // input_DOP_TGL_PEMERIKSAAN_OP
+                        "0", // input_DOP_NIP_PEMERIKSA_OP
+                        "0", // input_DOP_TGL_PEREKAMAN_OP
+                        "0", // input_DOP_NIP_PEREKAM_OP
+                        "0", // input_DOP_KD_UNIT
+                        ((EditText) rootView.findViewById(R.id.editText_DOP_Map_Coordinate)).getText().toString()
                 );
 
                 normalMode();
@@ -113,7 +138,7 @@ public class DataPBBFragment extends Fragment {
 
 		return rootView;
 	}
-
+/*
     private void updateLayoutObjekUsahaFindNIK(Cursor cursorSubjekPajak) {
         cursorSubjekPajak.moveToFirst();
         while( !cursorSubjekPajak.isAfterLast() ) {
@@ -121,12 +146,14 @@ public class DataPBBFragment extends Fragment {
 
             cursorSubjekPajak = mDataSource.selectObjekPajakNOP(DOU_NO_PBB);
             updateLayoutObjekPajak(cursorSubjekPajak);
+
             normalMode();
 
             cursorSubjekPajak.moveToNext();
         }
         normalMode();
     }
+*/
 
     private void updateLayoutSubjekPajak(Cursor cursorSubjekPajak) {
         cursorSubjekPajak.moveToFirst();
@@ -182,10 +209,51 @@ public class DataPBBFragment extends Fragment {
             String DOP_KD_BLOK = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_BLOK));
             String DOP_NO_URUT = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NO_URUT));
             String DOP_KD_JNS_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_JNS_OP));
+            String DOP_JALAN_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_JALAN_OP));
+            String DOP_BLOK_KAV_NO_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_BLOK_KAV_NO_OP));
+            String DSP_SUBJEK_PAJAK_ID = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
+            String DOP_NO_FORMULIR_SPOP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NO_FORMULIR_SPOP));
+            String DOP_NO_PERSIL = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NO_PERSIL));
+            String DOP_RW_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_RW_OP));
+            String DOP_RT_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_RT_OP));
+            String DOP_KD_STATUS_CABANG = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_STATUS_CABANG));
+            String DOP_KD_STATUS_WP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_STATUS_WP));
+            String DOP_TOTAL_LUAS_BUMI = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_TOTAL_LUAS_BUMI));
+            String DOP_TOTAL_LUAS_BNG = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_TOTAL_LUAS_BNG));
+            String DOP_NJOP_BUMI = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NJOP_BUMI));
+            String DOP_NJOP_BNG = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NJOP_BNG));
+            String DOP_STATUS_PETA_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_STATUS_PETA_OP));
+            String DOP_JNS_TRANSAKSI_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_JNS_TRANSAKSI_OP));
+            String DOP_TGL_PENDATAAN_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_TGL_PENDATAAN_OP));
+            String DOP_NIP_PENDATA = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NIP_PENDATA));
+            String DOP_TGL_PEMERIKSAAN_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_TGL_PEMERIKSAAN_OP));
+            String DOP_NIP_PEMERIKSA_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NIP_PEMERIKSA_OP));
+            String DOP_TGL_PEREKAMAN_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_TGL_PEREKAMAN_OP));
+            String DOP_NIP_PEREKAM_OP = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_NIP_PEREKAM_OP));
+            String DOP_KD_UNIT = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_KD_UNIT));
+            String DOP_PETA = cursorSubjekPajak.getString(cursorSubjekPajak.getColumnIndex(TaxCollectorHelper.DOP_PETA));
 
+            ((EditText) rootView.findViewById(R.id.editText_DOP_Map_Coordinate)).setText(DOP_PETA);
 
             ((EditText) rootView.findViewById(R.id.editText_NIK)).setText(WPNIK);
             ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setText(DOP_KD_PROPINSI + DOP_KD_DATI2 + DOP_KD_KECAMATAN + DOP_KD_KELURAHAN + DOP_KD_BLOK + DOP_NO_URUT + DOP_KD_JNS_OP);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_JALAN_WP)).setText(DOP_JALAN_OP);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_BLOK_KAV_NO_WP)).setText(DOP_BLOK_KAV_NO_OP);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_RW_WP)).setText(DOP_RW_OP);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_RT_WP)).setText(DOP_RT_OP);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_KELURAHAN_WP)).setText(DOP_KD_KELURAHAN);
+            ((EditText) rootView.findViewById(R.id.editText_DOP_Kecamatan)).setText(DOP_KD_KECAMATAN);
+
+            ((EditText) rootView.findViewById(R.id.editText_LuasTanah)).setText(DOP_TOTAL_LUAS_BUMI);
+            ((EditText) rootView.findViewById(R.id.editText_JumlahBangunan)).setText(DOP_TOTAL_LUAS_BNG);
+            /*((EditText) rootView.findViewById(R.id.editText_ZNT)).setText(DOP_KD_KECAMATAN);
+            ((EditText) rootView.findViewById(R.id.editText_JumlahOPBB)).setText(DOP_KD_KECAMATAN);
+            ((EditText) rootView.findViewById(R.id.editText_TanahKosong)).setText(DOP_KD_KECAMATAN);
+            ((EditText) rootView.findViewById(R.id.editText_Kavling)).setText(DOP_KD_KECAMATAN);
+            ((EditText) rootView.findViewById(R.id.editText_TanahdanBangunan)).setText(DOP_KD_KECAMATAN);
+            ((EditText) rootView.findViewById(R.id.editText_FasilitasUmum)).setText(DOP_KD_KECAMATAN);
+*/
+
 
             cursorSubjekPajak = mDataSource.selectSubjekPajakNIK(WPNIK);
             updateLayoutSubjekPajak(cursorSubjekPajak);
@@ -202,7 +270,7 @@ public class DataPBBFragment extends Fragment {
         rootView.findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.GONE);
         rootView.findViewById(R.id.layout_AddObjekPajakButton).setVisibility(View.GONE);
 
-        ((EditText) rootView.findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_NIK)).setKeyListener(null);
         ((EditText) rootView.findViewById(R.id.editText_DSP_Nama)).setBackgroundResource(R.drawable.border_normal_text);
         ((EditText) rootView.findViewById(R.id.editText_DSP_BLOK_KAV_NO_WP)).setBackgroundResource(R.drawable.border_normal_text);
         ((EditText) rootView.findViewById(R.id.editText_DSP_EMAIL_WP)).setBackgroundResource(R.drawable.border_normal_text);
@@ -217,6 +285,23 @@ public class DataPBBFragment extends Fragment {
         ((EditText) rootView.findViewById(R.id.editText_DSP_NPWP)).setBackgroundResource(R.drawable.border_normal_text);
         ((EditText) rootView.findViewById(R.id.editText_DSP_TELP_WP)).setBackgroundResource(R.drawable.border_normal_text);
 
+        ((EditText) rootView.findViewById(R.id.editText_DOP_Map_Coordinate)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_JALAN_WP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_BLOK_KAV_NO_WP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_RW_WP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_RT_WP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_KELURAHAN_WP)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_Kecamatan)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_LuasTanah)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_JumlahBangunan)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_ZNT)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_JumlahOPBB)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_TanahKosong)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_Kavling)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_TanahdanBangunan)).setBackgroundResource(R.drawable.border_normal_text);
+        ((EditText) rootView.findViewById(R.id.editText_FasilitasUmum)).setBackgroundResource(R.drawable.border_normal_text);
 
         ((EditText) rootView.findViewById(R.id.editText_NIK)).setKeyListener(null);
         ((EditText) rootView.findViewById(R.id.editText_DSP_Nama)).setKeyListener(null);
@@ -232,6 +317,24 @@ public class DataPBBFragment extends Fragment {
         ((EditText) rootView.findViewById(R.id.editText_DSP_RW_WP)).setKeyListener(null);
         ((EditText) rootView.findViewById(R.id.editText_DSP_NPWP)).setKeyListener(null);
         ((EditText) rootView.findViewById(R.id.editText_DSP_TELP_WP)).setKeyListener(null);
+
+        ((EditText) rootView.findViewById(R.id.editText_DOP_Map_Coordinate)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_NIK)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_JALAN_WP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_BLOK_KAV_NO_WP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_RW_WP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_RT_WP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_KELURAHAN_WP)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_DOP_Kecamatan)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_LuasTanah)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_JumlahBangunan)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_ZNT)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_JumlahOPBB)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_TanahKosong)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_Kavling)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_TanahdanBangunan)).setKeyListener(null);
+        ((EditText) rootView.findViewById(R.id.editText_FasilitasUmum)).setKeyListener(null);
 
     }
 

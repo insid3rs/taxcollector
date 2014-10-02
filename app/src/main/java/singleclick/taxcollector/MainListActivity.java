@@ -77,6 +77,10 @@ public class MainListActivity extends ListActivity {
                     //Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
                     Cursor cursor = mDataSource.selectAllObjekPajak();
                     updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("Alamat Objek Pajak")) {
+                    //Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    Cursor cursor = mDataSource.selectObjekPajakAlamat(searchTextEdit.getText().toString());
+                    updateList(cursor);
                 }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")){
                     Cursor cursor = mDataSource.selectObjekUsahaNPWPD(searchTextEdit.getText().toString());
                     updateList(cursor);
@@ -101,14 +105,19 @@ public class MainListActivity extends ListActivity {
                 if(searchSpinner.getSelectedItem().toString().equals("NIK")){
                     Cursor cursor = mDataSource.selectSubjekPajakNIK(searchTextEdit.getText().toString());
                     updateList(cursor);
+                }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")){
+                    Cursor cursor = mDataSource.selectSubjekPajakNamaWP(searchTextEdit.getText().toString());
+                    updateList(cursor);
                 }else if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
-                    Cursor cursor = mDataSource.selectSubjekPajakNOP(searchTextEdit.getText().toString());
+                    if(searchTextEdit.length() == 18) {
+                        Cursor cursor = mDataSource.selectObjekPajakNOP(searchTextEdit.getText().toString());
+                        updateList(cursor);
+                    }
+                }else if(searchSpinner.getSelectedItem().toString().equals("Alamat Objek Pajak")) {
+                    Cursor cursor = mDataSource.selectObjekPajakAlamat(searchTextEdit.getText().toString());
                     updateList(cursor);
                 }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")) {
                     Cursor cursor = mDataSource.selectObjekUsahaNPWPD(searchTextEdit.getText().toString());
-                    updateList(cursor);
-                }else if(searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")){
-                    Cursor cursor = mDataSource.selectSubjekPajakNamaWP(searchTextEdit.getText().toString());
                     updateList(cursor);
                 }
             }
@@ -143,7 +152,7 @@ public class MainListActivity extends ListActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("searchKey", mWPSearchList.get(position).get(KEY_SEARCH).toString());
         intent.putExtra("searchType", searchSpinner.getSelectedItem().toString());
-        intent.putExtra("objekUsahaType", objekUsahaType);
+        intent.putExtra("objekUsahaType", mWPSearchList.get(position).get(KEY_ADRESS).toString());
 
         startActivity(intent);
 
@@ -170,7 +179,7 @@ public class MainListActivity extends ListActivity {
         super.onResume();
         mDataSource.open();
 
-        if(searchSpinner.getSelectedItem().toString().equals("NIK")){
+        /*if(searchSpinner.getSelectedItem().toString().equals("NIK")){
             Cursor cursor = mDataSource.selectAllSubjekPajak();
             updateList(cursor);
         }else if(searchSpinner.getSelectedItem().toString().equals("NOP")) {
@@ -179,7 +188,7 @@ public class MainListActivity extends ListActivity {
         }else if(searchSpinner.getSelectedItem().toString().equals("NPWPD")){
             Cursor cursor = mDataSource.selectAllObjekUsaha();
             updateList(cursor);
-        }
+        }*/
     }
 
     private void updateList(Cursor cursor) {
@@ -191,14 +200,14 @@ public class MainListActivity extends ListActivity {
 
             HashMap<String, String> nopItem = new HashMap<String, String>();
 
-            if(searchSpinner.getSelectedItem().toString().equals("NIK")) {
+            if(searchSpinner.getSelectedItem().toString().equals("NIK") || searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")) {
                 namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_NM_WP));
                 subjekPajakID = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
                 alamatNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_JALAN_WP));
                 noNOP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_BLOK_KAV_NO_WP));
                 nopItem.put(KEY_SEARCH, subjekPajakID);
                 nopItem.put(KEY_ADRESS, alamatNOP + noNOP);
-            }else if(searchSpinner.getSelectedItem().toString().equals("NOP") || searchSpinner.getSelectedItem().toString().equals("Nama Subjek Pajak")) {
+            }else if(searchSpinner.getSelectedItem().toString().equals("NOP") || searchSpinner.getSelectedItem().toString().equals("Alamat Objek Pajak")) {
                 namaDSP = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DSP_SUBJEK_PAJAK_ID));
                 String DOP_KD_PROPINSI = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_PROPINSI));
                 String DOP_KD_DATI2 = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOP_KD_DATI2));
@@ -219,7 +228,7 @@ public class MainListActivity extends ListActivity {
                 subjekPajakNPWPD = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_NPWPD));
                 objekUsahaType = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_TIPE_OU));
                 nopItem.put(KEY_SEARCH, subjekPajakNPWPD);
-                nopItem.put(KEY_ADRESS, "");
+                nopItem.put(KEY_ADRESS, objekUsahaType);
             }
             nopItem.put(KEY_NAME, namaDSP);
 
@@ -260,10 +269,40 @@ public class MainListActivity extends ListActivity {
             intent.putExtra("searchType", "tambahSubjekPajak");
             startActivity(intent);
             return true;
+        }else if (id == R.id.action_tambahPBB) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahPBB");
+            startActivity(intent);
+            return true;
         }else if (id == R.id.action_tambahHotel) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("searchKey", "");
             intent.putExtra("searchType", "tambahHotel");
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.action_tambahHiburan) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahHiburan");
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.action_tambahParkir) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahParkir");
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.action_tambahReklame) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahReklame");
+            startActivity(intent);
+            return true;
+        }else if (id == R.id.action_tambahRestoran) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("searchKey", "");
+            intent.putExtra("searchType", "tambahRestoran");
             startActivity(intent);
             return true;
         }

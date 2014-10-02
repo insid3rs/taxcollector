@@ -94,6 +94,74 @@ public class ObjekUsahaFragment extends Fragment {
                                 listDataHeader.get(groupPosition)).get(
                                 childPosition), Toast.LENGTH_SHORT)
                         .show();*/
+
+                if(listDataHeader.get(groupPosition).toString().contains("HOTEL")){
+                    String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                    int end = item.lastIndexOf(")");
+
+                    String NPWPD = item.substring(start, end);
+
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("searchKey", NPWPD);
+                    intent.putExtra("searchType", "NPWPD");
+                    intent.putExtra("objekUsahaType", "HOTEL");
+
+                    startActivity(intent);
+
+                    System.out.println(NPWPD);
+                }else if(listDataHeader.get(groupPosition).toString().contains("PARKIR")){
+                    String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                    int end = item.lastIndexOf(")");
+
+                    String NPWPD = item.substring(start, end);
+
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("searchKey", NPWPD);
+                    intent.putExtra("searchType", "NPWPD");
+                    intent.putExtra("objekUsahaType", "PARKIR");
+
+                    startActivity(intent);
+
+                    System.out.println(NPWPD);
+                }else if(listDataHeader.get(groupPosition).toString().contains("RESTORAN")){
+                    String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                    int end = item.lastIndexOf(")");
+
+                    String NPWPD = item.substring(start, end);
+
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("searchKey", NPWPD);
+                    intent.putExtra("searchType", "NPWPD");
+                    intent.putExtra("objekUsahaType", "RESTORAN");
+
+                    startActivity(intent);
+
+                    System.out.println(NPWPD);
+                }else if(listDataHeader.get(groupPosition).toString().contains("HIBURAN")){
+                    String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                    int end = item.lastIndexOf(")");
+
+                    String NPWPD = item.substring(start, end);
+
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.putExtra("searchKey", NPWPD);
+                    intent.putExtra("searchType", "NPWPD");
+                    intent.putExtra("objekUsahaType", "HIBURAN");
+
+                    startActivity(intent);
+
+                    System.out.println(NPWPD);
+                }
+
+
                 return false;
             }
         });
@@ -126,11 +194,9 @@ public class ObjekUsahaFragment extends Fragment {
 
     private void updateLayoutObjekUsaha(Cursor cursor) {
 
-        int countPBB = 0;
         int countHiburan = 0;
         int countHotel = 0;
         int countParkir = 0;
-        int countReklame = 0;
         int countRestoran = 0;
 
 
@@ -138,11 +204,9 @@ public class ObjekUsahaFragment extends Fragment {
         listDataChild = new HashMap<String, List<String>>();
 
         // Adding child data
-        List<String> PBB = new ArrayList<String>();
         List<String> HIBURAN = new ArrayList<String>();
         List<String> HOTEL = new ArrayList<String>();
         List<String> PARKIR = new ArrayList<String>();
-        List<String> REKLAME = new ArrayList<String>();
         List<String> RESTORAN = new ArrayList<String>();
 
 
@@ -153,25 +217,19 @@ public class ObjekUsahaFragment extends Fragment {
             String DOU_NPWPD = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_NPWPD));
             String DOU_TIPE_OU = cursor.getString(cursor.getColumnIndex(TaxCollectorHelper.DOU_TIPE_OU));
 
-            System.out.println("masuk "+DOU_TIPE_OU);
+            //System.out.println("masuk "+DOU_TIPE_OU);
 
-            if(DOU_TIPE_OU.equalsIgnoreCase("pbb")){
-                PBB.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
-                countPBB++;
-            }else if(DOU_TIPE_OU.equalsIgnoreCase("hiburan")){
-                HIBURAN.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
+            if(DOU_TIPE_OU.equalsIgnoreCase("hiburan")){
+                HIBURAN.add(DOU_NM_OU + " ( NPWPD : " + DOU_NPWPD +")");
                 countHiburan++;
             }else if(DOU_TIPE_OU.equalsIgnoreCase("hotel")){
-                HOTEL.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
+                HOTEL.add(DOU_NM_OU + " ( NPWPD : " + DOU_NPWPD +")");
                 countHotel++;
             }else if(DOU_TIPE_OU.equalsIgnoreCase("parkir")){
-                PARKIR.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
+                PARKIR.add(DOU_NM_OU + " ( NPWPD : " + DOU_NPWPD +")");
                 countParkir++;
-            }else if(DOU_TIPE_OU.equalsIgnoreCase("reklame")){
-                REKLAME.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
-                countReklame++;
             }else if(DOU_TIPE_OU.equalsIgnoreCase("restoran")){
-                RESTORAN.add(DOU_NM_OU + " (" + DOU_NPWPD +")");
+                RESTORAN.add(DOU_NM_OU + " ( NPWPD : " + DOU_NPWPD +")");
                 countRestoran++;
             }
 
@@ -179,26 +237,20 @@ public class ObjekUsahaFragment extends Fragment {
         }
 
         // Adding child data
-        listDataHeader.add("PBB (" + countPBB + ")");
         listDataHeader.add("HIBURAN (" + countHiburan + ")");
         listDataHeader.add("HOTEL (" + countHotel + ")");
         listDataHeader.add("PARKIR (" + countParkir + ")");
-        listDataHeader.add("REKLAME (" + countReklame + ")");
         listDataHeader.add("RESTORAN (" + countRestoran + ")");
 
-        PBB.add("Tambah Data...");
         HIBURAN.add("Tambah Data...");
         HOTEL.add("Tambah Data...");
         PARKIR.add("Tambah Data...");
-        REKLAME.add("Tambah Data...");
         RESTORAN.add("Tambah Data...");
 
-        listDataChild.put(listDataHeader.get(0), PBB); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), HIBURAN);
-        listDataChild.put(listDataHeader.get(2), HOTEL);
-        listDataChild.put(listDataHeader.get(3), PARKIR);
-        listDataChild.put(listDataHeader.get(4), REKLAME);
-        listDataChild.put(listDataHeader.get(5), RESTORAN);
+        listDataChild.put(listDataHeader.get(0), HIBURAN); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), HOTEL);
+        listDataChild.put(listDataHeader.get(2), PARKIR);
+        listDataChild.put(listDataHeader.get(3), RESTORAN);
 
         //normalMode();
 
