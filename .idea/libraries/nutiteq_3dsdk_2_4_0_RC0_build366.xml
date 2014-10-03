@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nutiteq-3dsdk-2.4.0-RC0-build366">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/nutiteq-3dsdk-2.4.0-RC0-build366.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

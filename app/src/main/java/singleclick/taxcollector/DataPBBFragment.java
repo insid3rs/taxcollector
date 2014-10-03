@@ -1,5 +1,6 @@
 package singleclick.taxcollector;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import singleclick.taxcollector.db.TaxCollectorDataSource;
 import singleclick.taxcollector.db.TaxCollectorHelper;
@@ -20,7 +22,7 @@ public class DataPBBFragment extends Fragment {
     protected String objekUsahaPBB;
     protected String objekUsahaType;
     protected Cursor cursorSubjekPajak;
-
+    protected TextView tvMaps;
 
 
     protected View rootView;
@@ -37,6 +39,7 @@ public class DataPBBFragment extends Fragment {
         mDataSource = new TaxCollectorDataSource(getActivity());
         mDataSource.open();
     }
+
 
     @Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -135,8 +138,16 @@ public class DataPBBFragment extends Fragment {
             }
         });
 
+        tvMaps = (TextView)rootView.findViewById(R.id.textView2);
+        tvMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), EditableVectorFileMapActivity.class).putExtra("nop",((EditText) rootView.findViewById(R.id.editText_DSP_NOP)).getText().toString()));
+            }
+        });
 
-		return rootView;
+        return rootView;
+
 	}
 /*
     private void updateLayoutObjekUsahaFindNIK(Cursor cursorSubjekPajak) {

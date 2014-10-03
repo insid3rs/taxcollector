@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:compat="http://schemas.android.com/apk/res-auto" >
+    <item android:id="@+id/action_get_coord"
+        android:title="@string/action_get_coordinates"
+        android:icon="@drawable/ic_action_location_found"
+        compat:showAsAction="always" />
+</menu>

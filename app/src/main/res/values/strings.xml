@@ -19,6 +19,7 @@
     <string name="action_ubahObjPajak">Ubah Objek Pajak</string>
     <string name="action_hapusObjPajak">Hapus Objek Pajak</string>
     <string name="search_prompt">Pilih Kategori</string>
+    <string name="action_get_coordinates">Get Coordinates</string>
 
     <string-array name="search_arrays">
         <item>Alamat Objek Pajak</item>
