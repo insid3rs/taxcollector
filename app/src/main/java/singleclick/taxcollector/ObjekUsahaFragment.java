@@ -98,67 +98,97 @@ public class ObjekUsahaFragment extends Fragment {
                 if(listDataHeader.get(groupPosition).toString().contains("HOTEL")){
                     String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
-                    int end = item.lastIndexOf(")");
+                    if (item.equalsIgnoreCase("Tambah Data Hotel...")){
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", "");
+                        intent.putExtra("searchType", "tambahHotel");
+                        startActivity(intent);
 
-                    String NPWPD = item.substring(start, end);
+                    }else {
 
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra("searchKey", NPWPD);
-                    intent.putExtra("searchType", "NPWPD");
-                    intent.putExtra("objekUsahaType", "HOTEL");
+                        int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                        int end = item.lastIndexOf(")");
 
-                    startActivity(intent);
+                        String NPWPD = item.substring(start, end);
 
-                    System.out.println(NPWPD);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", NPWPD);
+                        intent.putExtra("searchType", "NPWPD");
+                        intent.putExtra("objekUsahaType", "HOTEL");
+
+                        startActivity(intent);
+                        System.out.println(NPWPD);
+                    }
+
+
                 }else if(listDataHeader.get(groupPosition).toString().contains("PARKIR")){
                     String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
-                    int end = item.lastIndexOf(")");
+                    if (item.equalsIgnoreCase("Tambah Data Parkir...")){
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", "");
+                        intent.putExtra("searchType", "tambahParkir");
+                        startActivity(intent);
+                    }else {
+                        int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                        int end = item.lastIndexOf(")");
 
-                    String NPWPD = item.substring(start, end);
+                        String NPWPD = item.substring(start, end);
 
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra("searchKey", NPWPD);
-                    intent.putExtra("searchType", "NPWPD");
-                    intent.putExtra("objekUsahaType", "PARKIR");
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", NPWPD);
+                        intent.putExtra("searchType", "NPWPD");
+                        intent.putExtra("objekUsahaType", "PARKIR");
 
-                    startActivity(intent);
-
-                    System.out.println(NPWPD);
+                        startActivity(intent);
+                        System.out.println(NPWPD);
+                    }
                 }else if(listDataHeader.get(groupPosition).toString().contains("RESTORAN")){
                     String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
-                    int end = item.lastIndexOf(")");
+                    if (item.equalsIgnoreCase("Tambah Data Restoran...")){
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", "");
+                        intent.putExtra("searchType", "tambahRestoran");
+                        startActivity(intent);
 
-                    String NPWPD = item.substring(start, end);
+                    }else {
+                        int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                        int end = item.lastIndexOf(")");
 
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra("searchKey", NPWPD);
-                    intent.putExtra("searchType", "NPWPD");
-                    intent.putExtra("objekUsahaType", "RESTORAN");
+                        String NPWPD = item.substring(start, end);
 
-                    startActivity(intent);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", NPWPD);
+                        intent.putExtra("searchType", "NPWPD");
+                        intent.putExtra("objekUsahaType", "RESTORAN");
 
-                    System.out.println(NPWPD);
+                        startActivity(intent);
+                        System.out.println(NPWPD);
+                    }
                 }else if(listDataHeader.get(groupPosition).toString().contains("HIBURAN")){
                     String item = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
 
-                    int start = item.lastIndexOf(" ( NPWPD : ") + 11;
-                    int end = item.lastIndexOf(")");
+                    if (item.equalsIgnoreCase("Tambah Data Hiburan...")){
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", "");
+                        intent.putExtra("searchType", "tambahHiburan");
+                        startActivity(intent);
 
-                    String NPWPD = item.substring(start, end);
+                    }else {
+                        int start = item.lastIndexOf(" ( NPWPD : ") + 11;
+                        int end = item.lastIndexOf(")");
 
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    intent.putExtra("searchKey", NPWPD);
-                    intent.putExtra("searchType", "NPWPD");
-                    intent.putExtra("objekUsahaType", "HIBURAN");
+                        String NPWPD = item.substring(start, end);
 
-                    startActivity(intent);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtra("searchKey", NPWPD);
+                        intent.putExtra("searchType", "NPWPD");
+                        intent.putExtra("objekUsahaType", "HIBURAN");
 
-                    System.out.println(NPWPD);
+                        startActivity(intent);
+                        System.out.println(NPWPD);
+                    }
                 }
 
 
@@ -242,10 +272,10 @@ public class ObjekUsahaFragment extends Fragment {
         listDataHeader.add("PARKIR (" + countParkir + ")");
         listDataHeader.add("RESTORAN (" + countRestoran + ")");
 
-        HIBURAN.add("Tambah Data...");
-        HOTEL.add("Tambah Data...");
-        PARKIR.add("Tambah Data...");
-        RESTORAN.add("Tambah Data...");
+        HIBURAN.add("Tambah Data Hiburan...");
+        HOTEL.add("Tambah Data Hotel...");
+        PARKIR.add("Tambah Data Parkir...");
+        RESTORAN.add("Tambah Data Restoran...");
 
         listDataChild.put(listDataHeader.get(0), HIBURAN); // Header, Child data
         listDataChild.put(listDataHeader.get(1), HOTEL);

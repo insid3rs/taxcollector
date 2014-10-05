@@ -54,6 +54,7 @@ public class MainActivity extends FragmentActivity implements
     private String WPKelurahan;
     private String WPKota;
     private String WPKodePos;
+    private String coordinates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends FragmentActivity implements
         searchKey = intent.getStringExtra("searchKey");
         searchType = intent.getStringExtra("searchType");
         objekUsahaType = intent.getStringExtra("objekUsahaType");
+        coordinates = intent.getStringExtra("dataCoord");
 
         //System.out.println(searchKey);
         //System.out.println(searchType);
@@ -110,6 +112,8 @@ public class MainActivity extends FragmentActivity implements
         mAdapter.setSearchKey(searchKey);
         mAdapter.setSearchType(searchType);
         mAdapter.setObjekUsahaType(objekUsahaType);
+        if(coordinates!=null)
+            mAdapter.setCoordinates(coordinates);
 
         if(searchType.equals("NIK") || searchType.equals("tambahSubjekPajak")){
             tabs = new String[] { "Subjek Pajak"};
@@ -256,6 +260,7 @@ public class MainActivity extends FragmentActivity implements
             findViewById(R.id.layout_UpdateSubjekPajakButton).setVisibility(View.VISIBLE);
         }else{
             findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.captureFront).setVisibility(View.VISIBLE);
         }
 
         ((EditText) findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_edit_text);
@@ -296,6 +301,7 @@ public class MainActivity extends FragmentActivity implements
             findViewById(R.id.layout_UpdateSubjekPajakButton).setVisibility(View.VISIBLE);
         }else{
             findViewById(R.id.layout_UpdateObjekPajakButton).setVisibility(View.VISIBLE);
+            findViewById(R.id.captureFront).setVisibility(View.VISIBLE);
         }
 
         ((EditText) findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_edit_text);
@@ -314,6 +320,7 @@ public class MainActivity extends FragmentActivity implements
         ((EditText) findViewById(R.id.editText_DSP_TELP_WP)).setBackgroundResource(R.drawable.border_edit_text);
 
         ((EditText) findViewById(R.id.editText_DOP_Map_Coordinate)).setBackgroundResource(R.drawable.border_edit_text);
+        ((EditText) findViewById(R.id.editText_DOP_Map_Coordinate)).setText(coordinates);
         ((EditText) findViewById(R.id.editText_NIK)).setBackgroundResource(R.drawable.border_edit_text);
         ((EditText) findViewById(R.id.editText_DSP_NOP)).setBackgroundResource(R.drawable.border_edit_text);
         ((EditText) findViewById(R.id.editText_DOP_JALAN_WP)).setBackgroundResource(R.drawable.border_edit_text);

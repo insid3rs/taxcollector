@@ -2,6 +2,7 @@ package singleclick.taxcollector;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,6 +15,7 @@ import com.nutiteq.components.Bounds;
 import com.nutiteq.components.Color;
 import com.nutiteq.components.CullState;
 import com.nutiteq.components.Envelope;
+import com.nutiteq.components.MapPos;
 import com.nutiteq.components.Options;
 import com.nutiteq.datasources.raster.MBTilesRasterDataSource;
 import com.nutiteq.db.SpatialLiteDbHelper;
@@ -50,21 +52,21 @@ import java.util.Map;
 import singleclick.taxcollector.utils.MapUtils;
 
 /**
- * 
+ *
  * Shows usage of EditableMapView with Spatialite database file or OGR shape file
- * 
+ *
  *  Enables offline editing of points, lines and polygons. 
  *  Supports both Spatialite 3.x and 4.x formats.
- *  
+ *
  *  See https://github.com/nutiteq/hellomap3d/wiki/Editable-MapView for details
- * 
+ *
  * Layers:
  *  RasterLayer with TMS data source- base map
  *  EditableGeometryLayer - layer with editable Spatialite data source / OGR data source (depending on file extension)
- * 
+ *
  * If Spatialite data source is detected, the Activity shows first list of tables in selected Spatialite database file,
  * and then opens for viewing and editing  selected one. It also creates toolbar for set of editing functions.
- * 
+ *
  * @author mtehver
  *
  */
@@ -89,41 +91,41 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
 
     @Override
     protected void createBaseLayer() {
-    	setupMap();
-        RasterDataSource dataSource = new HTTPRasterDataSource(new EPSG3857(), 0, 20, "http://otile1.mqcdn.com/tiles/1.0.0/osm/{zoom}/{x}/{y}.png");        
+        setupMap();
+        RasterDataSource dataSource = new HTTPRasterDataSource(new EPSG3857(), 0, 20, "http://otile1.mqcdn.com/tiles/1.0.0/osm/{zoom}/{x}/{y}.png");
         RasterLayer mapLayer = new RasterLayer(dataSource, 0);
         mapView.getLayers().setBaseLayer(mapLayer);
 
-        try {		        	
+        try {
             MBTilesRasterDataSource mbdataSource = new MBTilesRasterDataSource(new EPSG3857(), 13, 19, Environment.getExternalStorageDirectory()+ File.separator+"pajak_data"+ File.separator+"imgpajak.mbtiles", false, this);
             mbLayer = new RasterLayer(mbdataSource, 123);
-            mapView.getLayers().addLayer(mbLayer);	
+            mapView.getLayers().addLayer(mbLayer);
         } catch (IOException e) {
             Toast.makeText(this, "ERROR " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
         }
-		
-		mapView.setFocusPoint(mapView.getLayers().getBaseLayer().getProjection().fromWgs84(106.821902, -6.194537));
-		mapView.setZoom(12f);
+
+        mapView.setFocusPoint(mapView.getLayers().getBaseLayer().getProjection().fromWgs84(106.821902, -6.194537));
+        mapView.setZoom(12f);
     }
 
-	private void setupMap()
-	{                            
+    private void setupMap()
+    {
         mapView.getOptions().setTextureMemoryCacheSize(20 * 1024 * 1024);
         mapView.getOptions().setCompressedMemoryCacheSize(8 * 1024 * 1024);
         mapView.getOptions().setPersistentCacheSize(100 * 1024 * 1024);
-        
+
         mapView.getOptions().setBackgroundPlaneDrawMode(Options.DRAW_BITMAP);
         mapView.getOptions().setBackgroundPlaneBitmap(
                 UnscaledBitmapLoader.decodeResource(getResources(),
                         R.drawable.background_plane));
         mapView.getOptions().setClearColor(Color.WHITE);
         mapView.getOptions().setMapListener(new PajakMapListener(EditableVectorFileMapActivity.this,mapView));
-	}
-    
+    }
+
     @Override
     protected void createEditableLayers() {
         // read filename from extras        
-        createStyleSets();        
+        createStyleSets();
         createEditableOGRLayers();
 
     }
@@ -149,15 +151,15 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
             public void onClick(DialogInterface dialog, int item) {
                 Map<String, String> userData = new HashMap<String, String>();
                 switch (item) {
-                case 0:
-                    mapView.createElement(Point.class, userData);
-                    break;
-                case 1:
-                    mapView.createElement(Line.class, userData);
-                    break;
-                case 2:
-                    mapView.createElement(Polygon.class, userData);
-                    break;
+                    case 0:
+                        mapView.createElement(Point.class, userData);
+                        break;
+                    case 1:
+                        mapView.createElement(Line.class, userData);
+                        break;
+                    case 2:
+                        mapView.createElement(Polygon.class, userData);
+                        break;
                 }
             }
         });
@@ -174,11 +176,11 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
         if (element instanceof Point) {
             Point point = (Point) element;
             point.setStyleSet(pointStyleSet);
-            layers.get(0).add(point); 
+            layers.get(0).add(point);
         } else if (element instanceof Line) {
             Line line = (Line) element;
             line.setStyleSet(lineStyleSet);
-            layers.get(0).add(line); 
+            layers.get(0).add(line);
         } else if (element instanceof Polygon) {
             Polygon polygon = (Polygon) element;
             polygon.setStyleSet(polygonStyleSet);
@@ -210,13 +212,13 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
         PolygonStyle polygonStyle = PolygonStyle.builder().setColor(Color.BLUE | Color.GREEN).build();
         polygonStyleSet.setZoomStyle(0, polygonStyle);
 
-        labelStyle = 
+        labelStyle =
                 LabelStyle.builder()
-                .setEdgePadding((int) (12 * dpi))
-                .setLinePadding((int) (6 * dpi))
-                .setTitleFont(Typeface.create("Arial", Typeface.BOLD), (int) (16 * dpi))
-                .setDescriptionFont(Typeface.create("Arial", Typeface.NORMAL), (int) (13 * dpi))
-                .build();
+                        .setEdgePadding((int) (12 * dpi))
+                        .setLinePadding((int) (6 * dpi))
+                        .setTitleFont(Typeface.create("Arial", Typeface.BOLD), (int) (16 * dpi))
+                        .setDescriptionFont(Typeface.create("Arial", Typeface.NORMAL), (int) (13 * dpi))
+                        .build();
     }
 
     private void createEditableOGRLayers() {
@@ -254,7 +256,7 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
             Log.error(e.getLocalizedMessage());
             Toast.makeText(this, "ERROR " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             return;
-        }        
+        }
         dataSource.setMaxElements(MAX_ELEMENTS);
         dbEditableLayer = new EditableGeometryLayer(dataSource);
         mapView.getLayers().addLayer(dbEditableLayer);
@@ -287,7 +289,14 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
             {
 
                 ((Polygon)g).setStyleSet(MapUtils.getFoundPolygonStyle(this));
-                System.out.println("MAPS get same NOP element "+((Polygon)g).getVertexList().get(0));
+                System.out.println("MAPS get same NOP element " + ((Polygon) g).getVertexList().get(0));
+                dataSource.notifyElementChanged(g);
+                mapView.getLayers().removeLayer(dbEditableLayer);
+                System.out.println("MAPS layer after remove "+mapView.getLayers().getAllLayers().size());
+                mapView.getLayers().addLayer(new EditableGeometryLayer(dataSource));
+                System.out.println("MAPS layer after add "+mapView.getLayers().getAllLayers().size());
+                //dbEditableLayer.removeAll(dataSource.getUserData());
+                //dbEditableLayer.addAll(dataSource.getUserData());
                 mapView.setFocusPoint(((Polygon)g).getVertexList().get(3));
 
                 mapView.setZoom(20);
@@ -324,7 +333,6 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
                 System.out.println("MAPS unknown layer found " + layer.getClass().getName());
             }
         }*/
-
     }
 
     private Label createLabel(Map<String, String> userData) {
@@ -348,7 +356,16 @@ public class EditableVectorFileMapActivity extends EditableMapActivityBase{
         switch (item.getItemId())
         {
             case R.id.action_get_coord :
-                Toast.makeText(EditableVectorFileMapActivity.this, "coordinate "+mapView.getFocusPoint(),Toast.LENGTH_LONG).show();
+                Toast.makeText(EditableVectorFileMapActivity.this, "coordinate "+mapView.getLayers().getBaseLayer().getProjection().toWgs84(mapView.getFocusPoint().x, mapView.getFocusPoint().y),Toast.LENGTH_LONG).show();
+                MapPos wgs48pos = mapView.getLayers().getBaseLayer().getProjection().toWgs84(mapView.getFocusPoint().x,mapView.getFocusPoint().y);
+                String coordinate = wgs48pos.y+" , "+wgs48pos.x;
+                Intent intent = new Intent(this, MainActivity.class);
+                //intent.putExtra("searchKey", dataNOP);
+                intent.putExtra("searchKey", "317104100500100040");
+                intent.putExtra("searchType", "NOP");
+                intent.putExtra("objekUsahaType", "");
+                intent.putExtra("dataCoord",coordinate);
+                startActivity(intent);
                 break;
         }
 
